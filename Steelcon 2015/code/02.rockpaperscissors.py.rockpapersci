@@ -1,0 +1,27 @@
+import random
+
+
+
+print 'Welcome to Rock,Paper, Scissors'
+yourchoice = raw_input('Rock, Paper or Scissors:')
+
+computer = ['Rock', 'Paper', 'Scissors']
+computerchoice = (random.choice(computer))
+print 'Computer chose ' + computerchoice 
+
+
+if yourchoice == computerchoice:
+    print 'Its a Draw!' 
+elif yourchoice == 'Rock' and computerchoice == 'Paper':
+    print 'Computer Wins' 
+elif yourchoice == 'Rock' and computerchoice == 'Scissors':
+    print 'You Win' 
+elif yourchoice == 'Paper' and computerchoice == 'Rock':
+    print 'You Win' 
+elif yourchoice == 'Paper' and computerchoice == 'Scissors':
+    print 'You Lose' 
+elif yourchoice == 'Rock' and computerchoice == 'Scissors':
+    print 'You Wins' 
+elif yourchoice == 'Rock' and computerchoice == 'Paper':
+    print 'Computer Wins' 
+    
