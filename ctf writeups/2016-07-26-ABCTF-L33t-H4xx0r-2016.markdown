@@ -9,6 +9,7 @@ header-img: "img/abcd/0003.png"
 
 <h2>ABCTF2016 – L33t H4xx0r</h2>
 
+
 <p>Another interesting challenge from ABCTF2016. The user is provided with a login page. The user will need to login with the correct credentials to get the flag.
 
 <br>
@@ -23,6 +24,7 @@ The source code of the page hints at source.txt available which can be viewed th
 If we browse the page, we see that the website uses the PHP command <b>strcmp</b> to check if the user’s password is correct.
 
 <img alt="" src="http://snoopythesecuritydog.github.io/img/abcd/0011.png"/>
+
 
 This is an insecure implementation because of the way PHP comparisons work. PHP variables including class variables get the NULL value and NULL type by default. So if no value is set by the password parameter, the value will remain to be NULL. Furthermore, the source code wants the password value to return true through and NULL == 0 will return true. So, this can be used to bypass the login page.
 <br>
