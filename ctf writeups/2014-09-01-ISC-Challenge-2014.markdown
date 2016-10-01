@@ -1,0 +1,59 @@
+---
+layout:     post
+title:      "ISC Challenge 2014"
+subtitle:   "Web application challenge"
+date:       2014-09-01-01 12:00:00
+author:     "Snoopy, the Security Dog"
+header-img: "img/b_1.png"
+---
+
+<h2>Challenge 1 : Bypassing Authentication.</h2>
+
+<p>When logging into the sandbox, a user is left with a login page that takes the value 'username' and 'passwd' and uses as part of authentication.</p>
+
+<p>Upon closer analysis, the application was found to be taking and serialising the authentication credentials  using the  JSON.stringify() in a client-side javascript file. The values are then sent using the following JSON format.</p>
+
+<blockquote>{"protocol":"http","state":"CREDENTIALS_SENT","auth":"2fa","alg":"password_nonce","addr":"login.php",<br>"session":"","balancing":"auto"}</blockquote>
+
+<p>Entering invalid credentails will be checked by the server which will return the following base-64 encoded string.</p>
+
+<blockquote>{"protocol":"http","state":"RECEIVED_CREDENTIALS_ARE_INVALID","auth":"2fa","alg":"password_nonce","addr":"null",<br>"session":"null","balancing":"auto"}</blockquote>
+
+<p>The vulnerability in this challenge lies in the clientside validation of the username and password values.  The base-64 encoded string response returned by the application is being validated by Jauth.js.</p>
+
+<p>By using any browser developer tools or proxies, a user can modify the clientside script that is validating the response. </p>
+
+<img alt="" src="http://snoopythesecuritydog.github.io/img/isc1.png"/>
+
+<p>The Jauth.js is analysing the application's response data for validation. </p>
+
+<img alt="" src="http://snoopythesecuritydog.github.io/img/isc2.png" />
+<p>Using Burp Suite Incerception and JS-Beautifier plugin to modify the response.</p>
+
+<p>It will  only move to the next part of the 2 factor authentication if certain conditions are met. Changing the "RECEIVED_CREDENTIALS_ARE_VALID" condition to "RECEIVED_CREDENTIALS_ARE_INVALID" and vice-versa will successfully bypass the first stage of authentication.</p>
+
+<h2>Challenge 2 : Possible XML External Entity Injection </h2>
+
+<p>The second part of the challenge is using XML format to submit data from the client to the application  If a user enters a nonce value, the client will send it through the request for the server to process.</p>
+
+
+<img alt="" src="http://snoopythesecuritydog.github.io/img/isc3.png"/>
+<p>The enternal value is encoded into the <nonce> tag and send to the server.</p>
+
+<p>By looking at the server response, an XML External Entity  vulnerability seems like the logical attack vector since the server is returning a 404 response code. The application is processing and searching for the value given by the user. This type of functionality usually allows the use of entity references. </p>
+
+
+
+<br><p>To test for XXE, the following payload can be added to the request <p>
+
+<blockquote><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+<!ENTITY xxe SYSTEM "file:///[path to wini.ini or boot.ini ]">
+]>
+<user><nonce>&xxe;</nonce><policy>
+</blockquote>
+
+
+
+
+

