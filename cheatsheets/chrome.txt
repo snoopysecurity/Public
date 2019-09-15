@@ -9,3 +9,4 @@ Alt+Left Arrow	Back a page.
 Alt+Right Arrow	Forward a page.
 Ctrl+O	Open a file in the browser.
 Ctrl+Tab Change tab
+Ctrl+W Close tab
