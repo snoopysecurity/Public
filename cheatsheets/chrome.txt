@@ -1,0 +1,11 @@
+chrome shortcuts
+-----------------------
+Ctrl+T	Opens a new tab.
+Ctrl+U	View a web page's source code.
+Ctrl+W	Closes the current tab.
+Spacebar	Moves down a page at a time.
+Shift+Spacebar	Moves up a page at a time.
+Alt+Left Arrow	Back a page.
+Alt+Right Arrow	Forward a page.
+Ctrl+O	Open a file in the browser.
+Ctrl+Tab Change tab
