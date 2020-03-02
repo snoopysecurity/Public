@@ -1,0 +1,32 @@
+From de624dacf6a50e39fe3472af1414d44937ce1f03 Mon Sep 17 00:00:00 2001
+From: Sam Sanoop <sams@snyk.io>
+Date: Mon, 3 Feb 2020 21:25:54 +0000
+Subject: [PATCH] fix: check image arguments before processing (#19)
+
+Regex hotfix to check for command injection
+---
+ index.js | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/index.js b/index.js
+index 16654d1..4ca6998 100644
+--- a/index.js
++++ b/index.js
+@@ -7,6 +7,9 @@ var join = require('path').join;
+ var sprintf = require('util').format;
+ 
+ module.exports = function(image, output, cb) {
++  if(/;|&|`|\$|\(|\)|\|\||\||!|>|<|\?|\${/g.test(JSON.stringify(image))) {
++    console.log('Input Validation failed, Suspicious Characters found');
++  } else {
+   var cmd = module.exports.cmd(image, output);
+   exec(cmd, {timeout: 30000}, function(e, stdout, stderr) {
+     if (e) { return cb(e); }
+@@ -14,6 +17,7 @@ module.exports = function(image, output, cb) {
+ 
+     return cb(null, output.versions);
+   });
++}
+ };
+ 
+ /**

@@ -1,0 +1,26 @@
+From c7f97c9d60caf5fbb0227b7639993566d60ab96e Mon Sep 17 00:00:00 2001
+From: Sam Sanoop <sams@snyk.io>
+Date: Sun, 23 Feb 2020 12:36:25 +0000
+Subject: [PATCH] Prevent Zip Traversal Attacks
+
+Checks for special characters within filenames within a ZIP file using strpos comparison
+---
+ src/DariusIII/Zipper/Zipper.php | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/src/DariusIII/Zipper/Zipper.php b/src/DariusIII/Zipper/Zipper.php
+index 708fdfc..5b0649c 100644
+--- a/src/DariusIII/Zipper/Zipper.php
++++ b/src/DariusIII/Zipper/Zipper.php
+@@ -622,7 +622,10 @@ private function extractFilesInternal($path, callable $matchingMethod): void
+     private function extractOneFileInternal($fileName, $path)
+     {
+         $tmpPath = str_replace($this->getInternalPath(), '', $fileName);
+-
++        //Prevent Zip Traversal Attacks
++        if (strpos($fileName, '../') !== false || strpos($fileName, '..\\') !== false) {
++            throw new \RuntimeException('Special characters found within filenames');
++        }
+         // We need to create the directory first in case it doesn't exist
+         $dir = pathinfo($path.DIRECTORY_SEPARATOR.$tmpPath, PATHINFO_DIRNAME);
+         if (!$this->file->exists($dir) && !$this->file->makeDirectory($dir, 0755, true, true)) {
