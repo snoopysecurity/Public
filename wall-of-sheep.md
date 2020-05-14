@@ -27,3 +27,4 @@ Responsible Disclosures within Open Source Packages
 | utilitify | Prototype Pollution | https://snyk.io/vuln/SNYK-JS-UTILITIFY-559497 |
 | benchmark.js | ReDoS | https://github.com/bestiejs/benchmark.js/issues/229 |
 | markdown | ReDoS | https://snyk.io/vuln/SNYK-JS-MARKDOWN-560793 |
+| objutil | ProtoType Pollution  | https://snyk.io/vuln/SNYK-JS-OBJUTIL-559496 |
