@@ -28,3 +28,4 @@ Responsible Disclosures within Open Source Packages
 | benchmark.js | ReDoS | https://github.com/bestiejs/benchmark.js/issues/229 |
 | markdown | ReDoS | https://snyk.io/vuln/SNYK-JS-MARKDOWN-560793 |
 | objutil | ProtoType Pollution  | https://snyk.io/vuln/SNYK-JS-OBJUTIL-559496 |
+| netius | HTTP Request Smuggling | https://snyk.io/vuln/SNYK-PYTHON-NETIUS-569141
