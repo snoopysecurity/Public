@@ -1,0 +1,14 @@
+//https://github.com/netlify/netlify-cms/issues/4099
+
+//Initialize Dompurify
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
+//Then sanitising the html generated from `markdownToHtml`
+
+const sanitizer = dompurify.sanitize;
+const html = markdownToHtml(value, { getAsset, resolveWidget });
+return <WidgetPreviewContainer dangerouslySetInnerHTML={{ __html: sanitizer(html) }} />;
