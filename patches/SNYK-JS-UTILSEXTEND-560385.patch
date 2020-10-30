@@ -1,0 +1,30 @@
+From 3d78a224145a3468e6be59b6857134680f6a2ab8 Mon Sep 17 00:00:00 2001
+From: snoopysecurity <sams@snyk.io>
+Date: Sat, 7 Mar 2020 18:25:55 +0000
+Subject: [PATCH] Fix: Prevent Prototype Pollution
+
+---
+ index.js | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/index.js b/index.js
+index 5fecaa0..fa89a3a 100644
+--- a/index.js
++++ b/index.js
+@@ -29,7 +29,7 @@ function extend(target, source) {
+ 
+   for (var key in source) {
+     value = source[key];
+-
++    if(key !== '__proto__') {
+     if (Array.isArray(value)) {
+       if (!Array.isArray(target[key])) {
+         target[key] = [];
+@@ -46,6 +46,7 @@ function extend(target, source) {
+       target[key] = value;
+     }
+   }
++  }
+ 
+   return target;
+ }
