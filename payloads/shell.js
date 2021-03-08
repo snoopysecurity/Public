@@ -1,1 +1,1 @@
-window.require('child_process').execFile('echo foo > /tmp/test.txt',function(){})
+window.require('child_process').exec('echo foo > /tmp/test.txt',function(){})
