@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google ACE Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div id="quiz-container" class="bg-white p-8 max-w-lg mx-auto rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-center text-blue-500 mb-8">Google ACE Quiz</h1>
+
+        <!-- Quiz questions will be injected here from the JSON file -->
+        <div id="questions" class="space-y-6"></div>
+        
+        <!-- Submit button -->
+        <div class="text-center">
+            <button id="submit-button" class="mt-4 bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600 transition duration-200">Submit Answer</button>
+        </div>
+
+        <!-- Result message -->
+        <div id="result" class="mt-4 text-center font-semibold"></div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

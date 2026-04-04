@@ -1,0 +1,783 @@
+[
+  {
+      "question": "What is the gcloud command to set default zone for compute engine server using gcloud cli?",
+      "choices": [
+          "A. gcloud config set compute/zone us-east-1",
+          "B. gcloud config configurations set compute/zone us-east-1a",
+          "C. gcloud config set compute/zone us-east1-a",
+          "D. gcloud defaults set compute/zone us-east-1"
+      ],
+      "answer": {
+          "correct": "C. gcloud config set compute/zone us-east1-a",
+          "explanation": "The gcloud command to set the default zone for compute engine is gcloud config set compute/zone us-east1-a. Hence, C is the correct answer."
+      }
+  },
+  {
+      "question": "As a cloud engineer, you have been asked to upgrade the free trial of your account and rename it to a production-inventory system. You are getting permission denied error while making the changes. Which of the following permissions will solve the problem?",
+      "choices": [
+          "A. Billing.accounts.update",
+          "B. Billing.account.upgrade",
+          "C. Billing.account.update",
+          "D. Billing.accounts.upgrade"
+      ],
+      "answer": {
+          "correct": "A. Billing.accounts.update",
+          "explanation": "The required permission is billing.accounts.update on the Billing Account resource. Hence, A is correct."
+      }
+  },
+  {
+      "question": "Which of the following role provides granular access for a specific service and is managed by GCP?",
+      "choices": [
+          "A. Custom",
+          "B. Predefined",
+          "C. Admin",
+          "D. Primitive"
+      ],
+      "answer": {
+          "correct": "B. Predefined",
+          "explanation": "Predefined roles are managed by GCP and provide service-specific access. Custom roles are user-managed, while Admin and Primitive roles are not valid types in this context."
+      }
+  },
+  {
+      "question": "Your company has 5 TB of testing data stored in the production database of a testing tool named Quality Center. The data is being used to create a real-time analytics system which is causing slow response to the testers while using the tool. What should you do to improve the load on the database?",
+      "choices": [
+          "A. Set up Multi-AZ",
+          "B. Set up a read replica",
+          "C. Scale the database instance",
+          "D. Run the analytics query only on weekends"
+      ],
+      "answer": {
+          "correct": "B. Set up a read replica",
+          "explanation": "Read replicas can be used to run all the queries related to the analytics system, offloading the main database."
+      }
+  },
+  {
+      "question": "You have been asked to list the name of the active account using gcloud CLI. Which of the following commands will you use?",
+      "choices": [
+          "A. gcloud config list",
+          "B. gcloud auth list",
+          "C. gcloud account list",
+          "D. gcloud project list"
+      ],
+      "answer": {
+          "correct": "B. gcloud auth list",
+          "explanation": "To list the active account name, we use gcloud auth list. The other options do not provide the active account name."
+      }
+  },
+  {
+      "question": "What does the CIDR 10.0.2.0/26 correspond to?",
+      "choices": [
+          "A. 10.0.2.0 – 10.0.2.26",
+          "B. 10.0.2.0 – 10.0.2.63",
+          "C. 10.0.0.0 – 10.0.63.0",
+          "D. 10.0.2.0 – 10.0.0.26"
+      ],
+      "answer": {
+          "correct": "B. 10.0.2.0 – 10.0.2.63",
+          "explanation": "/26 means 64 IPs (=2^(32-26) = 2^6), meaning only the last digit can change, resulting in the range 10.0.2.0 to 10.0.2.63."
+      }
+  },
+  {
+      "question": "A cloud engineer wants to create a VM named whiz-server-1 with four CPUs. Which of the following commands would he use to create the VM whiz-server-1?",
+      "choices": [
+          "A. gcloud compute instances create –machine-type=n1-standard-4 whiz-server-1",
+          "B. gcloud compute instances create –cpus=4 whiz-server-1",
+          "C. gcloud compute instances create –machine-type=n1-standard-4 –instancename whiz-server-1",
+          "D. gcloud compute instances create –machine-type=n1-4-cpu whiz-server-1"
+      ],
+      "answer": {
+          "correct": "A. gcloud compute instances create –machine-type=n1-standard-4 whiz-server-1",
+          "explanation": "This command correctly specifies the machine type for a VM with 4 CPUs. The other options contain invalid parameters or machine types."
+      }
+  },
+  {
+      "question": "You have set a firewall rule that will permit inbound connections to a VM instance named whizserver-2. You want to apply this rule only if there is not another rule that would deny that traffic. What priority would you give to this rule?",
+      "choices": [
+          "A. 1000",
+          "B. 1",
+          "C. 65535",
+          "D. 0"
+      ],
+      "answer": {
+          "correct": "C. 65535",
+          "explanation": "This priority is the largest number allowed, meaning it will be the lowest priority, ensuring that other rules that match will apply."
+      }
+  },
+  {
+      "question": "You want your application hosted on a VM to fetch metadata of that instance. Which command will help you to fetch it?",
+      "choices": [
+          "A. curl metadata.google.internal/compute-metadata/v1/",
+          "B. curl <instance-private-ip>/metadata/v1/",
+          "C. curl metadata.google.internal/computeMetadata/v1/",
+          "D. curl internal.googleapi.com/computeMetadata/v1/"
+      ],
+      "answer": {
+          "correct": "C. curl metadata.google.internal/computeMetadata/v1/",
+          "explanation": "This is the correct command to fetch metadata. The other options do not use the correct syntax."
+      }
+  },
+  {
+      "question": "You have 100TB of non-relational data and want to run analytics on it to see previous year net sales. Which tool suits best to your requirement?",
+      "choices": [
+          "A. BigQuery",
+          "B. BigTable",
+          "C. Datastore",
+          "D. GCS"
+      ],
+      "answer": {
+          "correct": "B. BigTable",
+          "explanation": "BigTable is a managed NoSQL DB service designed for handling and processing large amounts of data. BigQuery is for relational data."
+      }
+  },
+  {
+    "question": "You are hired by an oil company that wants you to lead the migration of Oracle DB and DB2 to Google Cloud. Which of the following is the best option?",
+    "choices": [
+        "A. CloudSQL for Oracle and VM for DB2",
+        "B. CloudSQL for both Oracle and DB2",
+        "C. VM for both Oracle and DB2",
+        "D. Google App Engine for both Oracle and DB2"
+    ],
+    "answer": {
+        "correct": "C. VM for both Oracle and DB2",
+        "explanation": "As there is no managed service for both Oracle and DB2, the only option is to install both of them on a VM."
+    }
+},
+{
+    "question": "A client of yours wants you to migrate its on-premise MySQL data to Google Cloud without any downtime. Which service will you use for migrating SQL data to Cloud?",
+    "choices": [
+        "A. Cloud Migration",
+        "B. Anthos",
+        "C. CloudSQL",
+        "D. Cloud Run"
+    ],
+    "answer": {
+        "correct": "C. CloudSQL",
+        "explanation": "CloudSQL provides database migration service as well as MySQL managed DB service."
+    }
+},
+{
+    "question": "You are starting to work on a client’s project who is looking for a database service within Google Cloud which is horizontally scalable, supports gigabyte size of relational data and even supports ACID for reliable storage of data. Which service will you recommend?",
+    "choices": [
+        "A. Datastore",
+        "B. BigQuery",
+        "C. CloudSQL",
+        "D. Cloud Spanner"
+    ],
+    "answer": {
+        "correct": "D. Cloud Spanner",
+        "explanation": "Cloud Spanner is a global SQL database service that can scale across the globe horizontally and even supports ACID transactions."
+    }
+},
+{
+    "question": "You are distributing the traffic between a fleet of VMs within your VPC using Internal TCP/UDP Load Balancer. Which of the following specification does not support the selected Load Balancing Type?",
+    "choices": [
+        "A. Preserved Client IP",
+        "B. Global Availability",
+        "C. Internal Load Balancing",
+        "D. Any Destination Ports"
+    ],
+    "answer": {
+        "correct": "B. Global Availability",
+        "explanation": "Internal TCP/UDP Load Balancers are available within a Region and not Globally."
+    }
+},
+{
+    "question": "A developer has asked you to create a single nginx server for dev environment. Which service would allow you to launch VM using predefined images?",
+    "choices": [
+        "A. GKE",
+        "B. GAE",
+        "C. CloudSQL",
+        "D. Marketplace"
+    ],
+    "answer": {
+        "correct": "D. Marketplace",
+        "explanation": "Marketplace provides you with pre-built images which can be launched with just a few clicks without doing any configuration."
+    }
+},
+{
+    "question": "Your company has received a new project where it needs to migrate on-premise servers and data to Google Cloud gradually but until then you need to setup a VPN tunnel between on-premise and Google Cloud. Which service will you use in conjunction with Cloud VPN for a smooth setup?",
+    "choices": [
+        "A. Cloud CDN",
+        "B. Cloud NAT",
+        "C. Cloud Run",
+        "D. Cloud Router"
+    ],
+    "answer": {
+        "correct": "D. Cloud Router",
+        "explanation": "Google Cloud Router enables you to dynamically exchange routes between your Virtual Private Cloud (VPC) and on-premises networks by using Border Gateway Protocol (BGP)."
+    }
+},
+{
+    "question": "Your company is running a high availability deployment “hello-server” in Kubernetes Engine on port 8080 which needs to be exposed to public internet using a load balancer on port 80. Which of the following commands will help to accomplish this deployment?",
+    "choices": [
+        "A. kubectl expose deployment hello-server --type LoadBalancer --port 8080 --target-port 80",
+        "B. kubectl run deployment hello-server --type LoadBalancer --port 80 --target-port 8080",
+        "C. kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080",
+        "D. kubectl run deployment hello-server --type LoadBalancer --port 8080 --target-port 80"
+    ],
+    "answer": {
+        "correct": "C. kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080",
+        "explanation": "You can expose the deployment on port 80 by routing the request to target port 8080 using this command."
+    }
+},
+{
+    "question": "Which of the following gcloud command lets you view the details of a custom subnet you created in a particular region?",
+    "choices": [
+        "A. gcloud compute networks subnets view [SUBNET_NAME] --region us-central1",
+        "B. gcloud compute networks subnets describe [SUBNET_NAME] --region us-central1",
+        "C. gcloud compute networks subnets list [SUBNET_NAME] --region us-central1",
+        "D. gcloud compute networks subnets read [SUBNET_NAME] --region us-central1"
+    ],
+    "answer": {
+        "correct": "B. gcloud compute networks subnets describe [SUBNET_NAME] --region us-central1",
+        "explanation": "The describe flag provides a detailed description of the subnet mentioned in the command."
+    }
+},
+{
+  "question": "You were inspecting the containers running on a VM and found out that a pod is running which is no more required. You try to delete it but every time a new pod is created. What do you need to delete now for removing that pod?",
+  "choices": [
+      "A. ReplicaSet",
+      "B. VM",
+      "C. Container",
+      "D. Service"
+  ],
+  "answer": {
+      "correct": "A. ReplicaSet",
+      "explanation": "ReplicaSet is responsible for maintaining the desired number of pods, hence deleting it will delete the pod as well. Deleting a VM will delete all other containers as well. Deleting a container is the same as deleting a pod. Deleting a Service will not delete the pod."
+  }
+},
+{
+  "question": "Your company was bidding on a big data project form last few months and they have finally received the project. The project wants you to deploy Apache Spark clusters on Google Cloud. Which service will you use?",
+  "choices": [
+      "A. DataFlow",
+      "B. DataProc",
+      "C. BigTable",
+      "D. Cloud Composer"
+  ],
+  "answer": {
+      "correct": "B. DataProc",
+      "explanation": "Cloud Dataproc is a fully managed service for running Apache Spark and Hadoop clusters in a simpler, more cost-efficient way. Dataflow is for stream and batch data processing. BigTable is a NoSQL database, and Cloud Composer is a workflow orchestration service."
+  }
+},
+{
+  "question": "Your client wants to migrate their 30 TB of Hadoop or Spark cluster from a RHEL 6.5 on-premise servers to Google Cloud Platform. Which of the following service can be used at GCP end?",
+  "choices": [
+      "A. Compute Engine",
+      "B. App Engine",
+      "C. Dataproc",
+      "D. Big Query"
+  ],
+  "answer": {
+      "correct": "C. Dataproc",
+      "explanation": "Dataproc offers a faster, easier, and more cost-effective way to run Apache Spark and Hadoop. Compute Engine could be used but would be more costly. App Engine is not suitable, and BigQuery is not ideal for running Spark commands."
+  }
+},
+{
+  "question": "Your company has purchased a threat detection service from a third party and has asked you to upload all network logs to the application. Which of the following service will meet your requirements?",
+  "choices": [
+      "A. Activity Logs",
+      "B. Flow Logs",
+      "C. Network Logs",
+      "D. System Logs"
+  ],
+  "answer": {
+      "correct": "B. Flow Logs",
+      "explanation": "Flow logs capture packet flow within the network, including details like source and destination IPs and ports. Activity logs record API activities, and Network logs refer to Flow logs. System logs do not exist as a log type in GCP."
+  }
+},
+{
+  "question": "One of your team members had accidentally included a service account private JSON key while pushing code to GitHub. What steps should you immediately perform?",
+  "choices": [
+      "A. Delete the JSON file from GitHub.",
+      "B. Delete the project and all its resources.",
+      "C. Delete the JSON file from GitHub, remove the key from Google Cloud IAM, and generate a new key for use.",
+      "D. None of the above"
+  ],
+  "answer": {
+      "correct": "C. Delete the JSON file from GitHub, remove the key from Google Cloud IAM, and generate a new key for use.",
+      "explanation": "If private keys are exposed, you must delete them from both the source (GitHub) and GCP IAM, then create a new key. Deleting the JSON file alone is insufficient, and deleting projects and resources is not a practical solution."
+  }
+},
+{
+  "question": "Your project manager wants to create a user for Aston Smith, the new Cloud SQL administrator in your organization. Which of the following role would give him the ability to manage specific instances but no ability to import or restore data from backups?",
+  "choices": [
+      "A. Cloud SQL Editor",
+      "B. Cloud SQL Admin",
+      "C. Cloud SQL Viewer",
+      "D. Cloud SQL Client"
+  ],
+  "answer": {
+      "correct": "A. Cloud SQL Editor",
+      "explanation": "Cloud SQL Editor allows managing specific instances without permissions for modifying permissions, users, or importing data. Cloud SQL Admin grants full control, Viewer provides read-only access, and Client is for connectivity."
+  }
+},
+{
+  "question": "Your company has uploaded some business-critical documents to Cloud Storage and your project manager wants you to restrict access to the objects by using ACLs. Which of the following permission would allow you to update the object ACLs?",
+  "choices": [
+      "A. Storage.objects.update",
+      "B. Storage.objects.setIamPolicy",
+      "C. Storage.objects.create",
+      "D. Storage.objects.getIamPolicy"
+  ],
+  "answer": {
+      "correct": "B. Storage.objects.setIamPolicy",
+      "explanation": "The 'storage.objects.setIamPolicy' permission allows updating object ACLs. 'storage.objects.update' modifies object metadata, 'storage.objects.create' adds new objects, and 'storage.objects.getIamPolicy' reads object ACLs."
+  }
+},
+{
+  "question": "As per your manager’s instruction, you created a custom VPC with a subnet mask of 24 which provides 256 IP addresses but are only able to use 252 addresses out of it. Your manager is trying to figure out what’s going wrong and approaches you for the answer. What will you answer to your manager?",
+  "choices": [
+    "A. Inform manager that you will recreate the VPC because you feel something went wrong while creating a subnet",
+    "B. GCP reserves four IP addresses in each primary subnet range, because of which the usable IP count is 252",
+    "C. It’s because your account has reached a soft limit for the number of private IP address space. Raise a request for a quota increase",
+    "D. None of the above"
+  ],
+  "answer": {
+    "correct": "B. GCP reserves four IP addresses in each primary subnet range, because of which the usable IP count is 252",
+    "explanation": "Google Cloud always reserves 4 IP addresses for every subnet you create. The first IP is a network address, the second is reserved for the default gateway, the second-to-last is reserved for future use, and the last address is the broadcast address."
+  }
+},
+{
+  "question": "You work for a retail company that has a busy online store. As you are approaching New Year, you find that your e-store is getting more and more traffic. You ensure that your web servers are behind a managed instance group. However, you notice that the web tier is frequently scaling, sometimes multiple times in an hour. You need to prevent the instance group from scaling up and down so rapidly. Which of the following options would help you to achieve this?",
+  "choices": [
+    "A. Change the auto scaling metric to use multiple metrics instead of just one metric",
+    "B. Reduce the number of maximum instance count",
+    "C. Associate a health check with instance group",
+    "D. Increase the cool down period"
+  ],
+  "answer": {
+    "correct": "D. Increase the cool down period",
+    "explanation": "Increasing the cool down period will make the scaling policy wait for a slightly longer period before taking the next action of either scale up or down."
+  }
+},
+{
+  "question": "A developer accidentally deleted some of the files from a bucket. Luckily, the files were not critical and were re-created soon. Because of this, your team lead has asked you to enable versioning on the bucket. Which command would help you enable the same?",
+  "choices": [
+    "A. gsutil versioning enable gs://whizlabs-bucket",
+    "B. gsutil gs://whizlabs-bucket enable versioning",
+    "C. gsutil enable versioning gs://whizlabs-bucket",
+    "D. gsutil versioning set on gs://whizlabs-bucket"
+  ],
+  "answer": {
+    "correct": "D. gsutil versioning set on gs://whizlabs-bucket",
+    "explanation": "The CLI command to enable versioning is 'gsutil versioning set on gs://whizlabs-bucket.'"
+  }
+},
+{
+  "question": "A bug has been identified within your Python application which is hosted using App Engine and you are about to rollout a new version of the application to resolve the bug, but do not want the traffic to automatically shift to the new version just to make sure the new version does not break anything. How would you achieve it?",
+  "choices": [
+    "A. Pass a custom version ID so that App Engine does not send traffic to new version",
+    "B. Pass --no-promote flag while deploying new version",
+    "C. Pass --no-active flag while deploying new version",
+    "D. Use --inactive-mode flag while deploying new version of the app"
+  ],
+  "answer": {
+    "correct": "B. Pass --no-promote flag while deploying new version",
+    "explanation": "Using --no-promote flag while deploying the new version of the app will not automatically send traffic to the new version."
+  }
+},
+{
+  "question": "You are trying to fetch metadata of a VM using “curl metadata.google.internal/computeMetadata/v1/” command but are constantly receiving 403 Forbidden. What could be the possible reason?",
+  "choices": [
+    "A. Service account is missing",
+    "B. Metadata-Flavor: Google header is missing",
+    "C. Metadata-Access: Google header is missing",
+    "D. Firewall rule attached to the VM is blocking the request"
+  ],
+  "answer": {
+    "correct": "B. Metadata-Flavor: Google header is missing",
+    "explanation": "While querying metadata of an instance you must provide the header “Metadata-Flavor: Google”. This header indicates that the request was sent with the intention of retrieving metadata values, rather than unintentionally from an insecure source, and allows the metadata server to return the data you requested. If you do not provide this header, the metadata server denies your request."
+  }
+},
+{
+  "question": "What is the command for creating a storage bucket that has once per month access and is named ‘archive_bucket’?",
+  "choices": [
+    "A. gsutil rm -coldline gs://archive_bucket",
+    "B. gsutil mb -c coldline gs://archive_bucket",
+    "C. gsutil mb -c nearline gs://archive_bucket",
+    "D. gsutil mb gs://archive_bucket"
+  ],
+  "answer": {
+    "correct": "C. gsutil mb -c nearline gs://archive_bucket",
+    "explanation": "Nearline buckets are for once per month access. Coldline buckets require only accessing once per 90 days and would incur additional charges for greater access."
+  }
+},
+{
+  "question": "You need to deploy an update to an application in Google App Engine. The update is risky, but it can only be tested in a live environment. What is the best way to introduce the update to minimize risk?",
+  "choices": [
+    "A. Deploy a new version of the application but use traffic splitting to only direct a small number of users to the new version",
+    "B. Deploy the application temporarily and be prepared to pull it back if needed",
+    "C. Warn users that a new app version may have issues and provide a way to contact you if there are problems",
+    "D. Create a new project with the new app version, then redirect users to the new version"
+  ],
+  "answer": {
+    "correct": "A. Deploy a new version of the application but use traffic splitting to only direct a small number of users to the new version",
+    "explanation": "Deploying a new version without assigning it as the default version will not create downtime for the application. Using traffic splitting allows for easily redirecting a small amount of traffic to the new version and can also be quickly reverted without application downtime."
+  }
+},
+{
+  "question": "You have created a Kubernetes engine cluster named ‘mycluster’. You’ve realized that you need to change the machine type for the cluster from n1-standard-1 to n1-standard-4. What is the command to make this change?",
+  "choices": [
+    "A. You must create a new node pool in the same cluster and migrate the workload to the new pool",
+    "B. gcloud container clusters update mycluster –machine-type n1-standard-4",
+    "C. This action is not possible",
+    "D. gcloud container clusters resize mycluster –machine-type n1-standard-4"
+  ],
+  "answer": {
+    "correct": "A. You must create a new node pool in the same cluster and migrate the workload to the new pool",
+    "explanation": "You cannot change the machine type for an individual node pool after creation. You need to create a new pool and migrate your workload over."
+  }
+},
+{
+  "question": "You have recently joined a startup and have been asked to create a new Google Cloud account for the company along with setting up budget alarm of $100. You have setup an alarm with 40%, 60%, 90% and 100% threshold. What will happen once the threshold of 100% is reached?",
+  "choices": [
+    "A. A notification will be sent to Project Owner & Billing Admins",
+    "B. Your project will deleted because you have depleted all your budget",
+    "C. All VMs will be stopped so that you don’t exceed your budget",
+    "D. A notification will be sent to Billing Admins and Billing Users"
+  ],
+  "answer": {
+    "correct": "A. A notification will be sent to Project Owner & Billing Admins",
+    "explanation": "When the budget threshold of 100% is reached, a notification is sent to the designated Project Owner and Billing Admins. This alert helps ensure that the responsible parties are aware of budget usage."
+  }
+},
+{
+  "question": "Your company is hosting 10TB of customer data in BigQuery. The CTO of the company has decided to use this data and build some analytics on top of data which they have. At the end of the first month there was a huge spike in the bill due to use of BigQuery and CFO was not happy with the same. He has asked you to cut down the cost. How can you achieve this?",
+  "choices": [
+    "A. Use GROUP BY clause",
+    "B. Use composite keys to query the data",
+    "C. Instead of using SELECT *, query only required columns",
+    "D. Use JOINS in the query to fetch data"
+  ],
+  "answer": {
+    "correct": "C. Instead of using SELECT *, query only required columns",
+    "explanation": "By limiting the number of columns to required ones you will be able to reduce the amount of data processed by BigQuery thus saving cost."
+  }
+},
+{
+  "question": "There are 15 VMs in your company’s Google Cloud account which have public IP address but are ephemeral. Your manager asked you to assign static public IP to each instance. During the process you were able to assign IPs to only 5 of the VMs and were receiving error of all other instances. What can be the reason?",
+  "choices": [
+    "A. You have reached the hard limit of using static IP addresses",
+    "B. Your quota has been exhausted and you can raise a request to increase it",
+    "C. Not all OS supports static public IP so check if the OS on VM supports static IP",
+    "D. You need to first remove existing public IP attached to VMs and then attach static IP to them"
+  ],
+  "answer": {
+    "correct": "B. Your quota has been exhausted and you can raise a request to increase it",
+    "explanation": "Cloud providers have soft limits of some of the resources to prevent uncontrolled usage of resources. Likewise, even GCP has it for static public IPs. You can simply raise request for increasing the limit."
+  }
+},
+{
+  "question": "You are trying to get Google Kubernetes server configuration of a project by running the command gcloud container get-server-config, when you hit enter, you get an error message: “There was a problem refreshing your current auth tokens: invalid_grant: Bad Request”. What would you do to successfully run this command and get the server configuration from Kubernetes?",
+  "choices": [
+    "A. gcloud auth login",
+    "B. gcloud config set account [ACCOUNT]",
+    "C. gcloud config set project [PROJECT_ID]",
+    "D. gcloud components update"
+  ],
+  "answer": {
+    "correct": "A. gcloud auth login",
+    "explanation": "The error is produced when the user’s gcloud sdk access has expired. gcloud auth login allows you to obtain new google cloud credentials using your existing email id and password to activate your gcloud sdk."
+  }
+},
+{
+  "question": "You have an application running on Google Cloud VM written in C#.Net from last few weeks. Suddenly you experience elevated latency and poor performance among application endpoints. Which service can help you troubleshoot this issue?",
+  "choices": [
+    "A. Stackdriver Profiler",
+    "B. Stackdriver Monitoring",
+    "C. Activity Logs",
+    "D. Stackdriver Trace"
+  ],
+  "answer": {
+    "correct": "D. Stackdriver Trace",
+    "explanation": "Stackdriver Trace is a distributed tracing system that collects latency data from your applications and displays it in the Google Cloud Platform Console."
+  }
+},
+{
+  "question": "Steve & sons has appointed a new devops engineer with experience in Google Cloud Platform, you have been asked to create a user which would allow him to call “builds.cancel()” API only. Which of the following permission would you consider completing this task?",
+  "choices": [
+    "A. Cloudbuild.builds.create",
+    "B. Cloudbuild.builds.update",
+    "C. Cloudbuild.builds.get",
+    "D. Cloudbuild.builds.list"
+  ],
+  "answer": {
+    "correct": "B. Cloudbuild.builds.update",
+    "explanation": "cloudbuild.builds.update allows users to cancel builds during execution."
+  }
+},
+{
+  "question": "Your project manager wants to create a user for Aston Smith who is the new cloud SQL administrator in your organization. Which of the following role would give him the ability to manage specific instances but no ability to import or restore data from backups?",
+  "choices": [
+    "A. Cloud SQL Editor",
+    "B. Cloud SQL Admin",
+    "C. Cloud SQL Viewer",
+    "D. Cloud SQL Client"
+  ],
+  "answer": {
+    "correct": "A. Cloud SQL Editor",
+    "explanation": "SQL Editor allows users to Manage specific instances without the ability to import data or restore from a backup."
+  }
+},
+{
+  "question": "You have about 20TB of data which is not accessed and the data team decided to archive them in the cloud. The team is looking for a storage solution that is highly available with minimum costs. On the other hand, the data may be accessed a couple of times a year for reconciliation purposes. Which of the following choices best satisfy data team’s requirements?",
+  "choices": [
+    "A. Google Storage Standard",
+    "B. Google Storage Nearline",
+    "C. Google Storage Coldline",
+    "D. BigQuery"
+  ],
+  "answer": {
+    "correct": "C. Google Storage Coldline",
+    "explanation": "Google Cloud Storage Coldline is a low-cost, highly durable storage service for storing infrequently accessed data."
+  }
+},
+{
+  "question": "You have an on-premises MySQL database that you have been asked to move to Google Cloud. Users should run SQL queries to fetch data from the database. Your solution should be cost-effective and allow increasing read capacities in the future. Which of the following Google Cloud products is the best for this scenario?",
+  "choices": [
+    "A. Cloud Storage",
+    "B. Cloud Spanner",
+    "C. Cloud SQL",
+    "D. Cloud Datastore"
+  ],
+  "answer": {
+    "correct": "C. Cloud SQL",
+    "explanation": "Cloud SQL is a fully managed database service that makes it easy to set up, maintain, manage, and administer your relational databases in the cloud."
+  }
+},
+{
+  "question": "You have created a pre-populated PersistentVolume disk as ReadOnlyMany, when you try to mount the volume to a POD, you fail to mount error, what could be the most likely reason for this failure?",
+  "choices": [
+    "A. You created a PersistentVolume but did not create a PersistentVolumeClaim",
+    "B. You have not specified the correct mount point in your pod.yaml file",
+    "C. You entered an incorrect PersistentVolume name in the pod.yaml file",
+    "D. The pod.yaml file doesn’t have permission to mount the volume as it is created with ReadOnlyMany access"
+  ],
+  "answer": {
+    "correct": "A. You created a PersistentVolume but did not create a PersistentVolumeClaim",
+    "explanation": "In order to mount a persistent disk, you need to create a PersistentVolumeClaim after creating a PersistentVolume and then attach the PersistentVolumeClaim to the pod."
+  }
+},
+{
+  "question": "There are 5 VPC networks in your staging project created for 5 different applications. Each network has its own CIDR range and firewall rules. You are asked to list the firewall rules of network 3 to perform an update. Select the appropriate response.",
+  "choices": [
+    "A. gcloud compute firewall-rules list –filter network=network 3",
+    "B. gcloud vpc network=network 3 –list firewall-rules",
+    "C. gcloud compute network=network 3 –list firewall-rules",
+    "D. gcloud vpc firewall-rules list –filter network=network 3"
+  ],
+  "answer": {
+    "correct": "A. gcloud compute firewall-rules list –filter network=network 3",
+    "explanation": "The firewall-rules are defined under VPC but when using gcloud, they can only be accessed by calling compute api and thus the following command lists the firewall-rules for the given network."
+  }
+},
+{
+  "question": "Your company has developed an application to accelerate the efficiency in making sales calls about the product of your client. Every time a recipient is called, log sink is used to export the record to a destination. Which of the following destinations are supported? Choose any 2.",
+  "choices": [
+    "A. BigQuery",
+    "B. Cloud Spanner",
+    "C. Pub/Sub",
+    "D. Cloud Bigtable"
+  ],
+  "answer": {
+    "correct": "A and C",
+    "explanation": "Log sinks can be exported to Cloud Storage, Pub/Sub and BigQuery only."
+  }
+},
+{
+  "question": "You updated the metadata of an object stored in Reports-PDF bucket using google cloud SDK. You want to ensure that the metadata has been updated for that object before you confirm the changes to the development team. Which of the following google cloud SDK command would you use?",
+  "choices": [
+    "A. gsutil stat gs://Reports-PDF/[OBJECT_NAME]",
+    "B. gsutil getmeta gs://Reports-PDF/[OBJECT_NAME]",
+    "C. gsutil setmeta gs://Reports-PDF/[OBJECT_NAME]",
+    "D. gsutil meta gs://Reports-PDF/[OBJECT_NAME]"
+  ],
+  "answer": {
+    "correct": "A. gsutil stat gs://Reports-PDF/[OBJECT_NAME]",
+    "explanation": "The stat command will output details about the specified object URLs."
+  }
+},
+{
+  "question": "A health care company that provides medical service to the users want to track their network forensics, real-time security analysis and optimize the expense. The manager would like to track the network sent from and received by VM instances. What do you suggest they do?",
+  "choices": [
+    "A. Pub/Sub",
+    "B. VPC Flow Logs",
+    "C. VPC Monitoring",
+    "D. Cloud Storage"
+  ],
+  "answer": {
+    "correct": "B. VPC Flow Logs",
+    "explanation": "Flow Logs are used to track network related findings."
+  }
+},
+{
+  "question": "A development team works with two Cloud Functions using node.js code. Each function corresponds to environments for development and production. The code is same except for the Cloud SQL database values used in each function. Team wants to maintain code in a clean and reusable fashion and decides to pass the database value during function execution. Which feature will allow you to do this?",
+  "choices": [
+    "A. Timeouts",
+    "B. Service Accounts",
+    "C. Environment Variables",
+    "D. Metadata"
+  ],
+  "answer": {
+    "correct": "C. Environment Variables",
+    "explanation": "Environment variables for cloud functions enable you to dynamically pass settings to your function code and libraries, without making changes to your code."
+  }
+},
+{
+  "question": "Your client hosts a static website on Cloud Storage written in HTML, CSS, JavaScript. The site targets users in North America, the usage of website has grown worldwide and hundreds of thousands of visitors access it monthly. Visitors from different parts of the world are experiencing slow performance due to latency while users in the United States experience normal response times. What service can mitigate this issue?",
+  "choices": [
+    "A. Load Balancer",
+    "B. Cloud DNS",
+    "C. Cloud CDN",
+    "D. Storage Caching"
+  ],
+  "answer": {
+    "correct": "C. Cloud CDN",
+    "explanation": "Google Cloud CDN leverages Google’s globally distributed edge points of presence to accelerate content delivery for websites and applications served out of Google Compute Engine and Google Cloud Storage."
+  }
+},
+{
+  "question": "You have been hired as a contractor by one of the travel technology company who is planning to containerize their existing applications in such a way that they can perform a lift and shift very easily in future if they plan to move away from Google Cloud. Which service will best suit this case?",
+  "choices": [
+    "A. Cloud Function",
+    "B. App Engine Standard",
+    "C. Kubernetes Engine",
+    "D. CloudRun"
+  ],
+  "answer": {
+    "correct": "C. Kubernetes Engine",
+    "explanation": "Kubernetes is an open-source solution supported by major cloud platforms and will be very easy for companies to move out at a later stage if required because they can use the same config files with very minor changes."
+  }
+},
+{
+  "question": "Your company’s finance team needs to back up data on a Cloud Storage bucket for disaster recovery purposes. You want to comply with Google’s recommended practices in implementing the solution for this task.\n\nWhich storage class do you think would be the best option?",
+  "choices": [
+    "A. Multi-Regional Storage",
+    "B. Nearline Storage",
+    "C. Coldline Storage",
+    "D. Archive Storage"
+  ],
+  "answer": {
+    "correct": "D. Archive Storage",
+    "explanation": "Archive Storage is the most cost-effective storage class for data that is accessed less than once a year, making it suitable for disaster recovery."
+  }
+},
+{
+  "question": "All employees in your organization have a Google account. Your operations team needs to manage over a hundred Compute Engine instances. The members of this team must be provided only with administrative access to the VM instances. Moreover, the security team wants to audit instance logins and ensure that the provision of credentials is operationally efficient.\n\nWhat should you do?",
+  "choices": [
+    "A. Create a new SSH key pair. Issue the private key to each member of the team. Configure the public key in the metadata of each instance.",
+    "B. Require each member of the team to generate a new SSH key pair. Have them send their public key to you. Utilize a configuration management tool to deploy those SSH keys on each instance.",
+    "C. Require each member of the team to generate a new SSH key pair and to add the public key to their respective Google account. Then grant the compute.osAdminLogin role to the corresponding Google group of the operations team.",
+    "D. Create a new SSH key pair. Issue the private key to each member of the operations team. Configure the public key as a project-wide public SSH key in your project. Lastly, allow project-wide public SSH keys on each instance."
+  ],
+  "answer": {
+    "correct": "C. Require each member of the team to generate a new SSH key pair and to add the public key to their respective Google account. Then grant the compute.osAdminLogin role to the corresponding Google group of the operations team.",
+    "explanation": "This approach leverages Google accounts and IAM roles for efficient credential management and auditing."
+  }
+},
+{
+  "question": "Your team manager wants you to configure a group of autohealing Compute Engine instances that run on multiple zones for network load balancing. You want to accomplish this task with the least amount of steps possible.\n\nYou have to ensure that all the Compute Engine instances are automatically recreated if they are unresponsive after three attempts with a 10-second interval.\n\nWhat should you do?",
+  "choices": [
+    "A. Provision an HTTP load balancer that references its backend to an existing instance group. Configure the health check to healthy (HTTP).",
+    "B. Build a managed instance group. Set the Autohealing health check to healthy (HTTP).",
+    "C. Provision an HTTP load balancer that references its backend to an existing instance group. Specify a balancing mode and set the maximum RPS (request per second) to 10.",
+    "D. Build a managed instance group. Activate the autoscaling setting."
+  ],
+  "answer": {
+    "correct": "B. Build a managed instance group. Set the Autohealing health check to healthy (HTTP).",
+    "explanation": "A managed instance group with autohealing enables automatic recreation of instances if they become unresponsive."
+  }
+},
+{
+  "question": "In your organization, employees pay for their Google Cloud Platform projects using their personal credit cards, which will be refunded by the finance team at the end of each month. Your management team decided to centralize all projects under a new single billing account.\n\nWhat should you do?",
+  "choices": [
+    "A. Using the GCP Console, create a new billing account and set up a payment method. Afterward, associate all of the projects in this newly created billing account.",
+    "B. Create a support ticket with Google Support and be ready for their call when they ask to share the corporate credit card details over the phone.",
+    "C. Send an email to cloud-billing@google.com detailing your bank account information. Afterward, request a corporate billing account for your organization.",
+    "D. In the GCP Console, navigate to the Resource Manage section and move all projects to the root Organization."
+  ],
+  "answer": {
+    "correct": "A. Using the GCP Console, create a new billing account and set up a payment method. Afterward, associate all of the projects in this newly created billing account.",
+    "explanation": "Creating a new billing account and associating all projects with it centralizes billing for easier management."
+  }
+},
+{
+  "question": "Your DevOps team plans to provision a Jenkins server for their project on the Google Cloud Platform. The server needs to be deployed quickly, so the group decided to minimize the number of steps necessary to accomplish this task.\n\nWhat should you do?",
+  "choices": [
+    "A. Download the Jenkins Java WAR file and deploy it to App Engine Standard.",
+    "B. Build a new Compute Engine instance and install Jenkins through the Google Cloud Shell command-line interface.",
+    "C. Provision a Kubernetes cluster on Compute Engine and build a deployment using the Jenkins Docker image.",
+    "D. Utilize the GCP Marketplace to launch the Jenkins server."
+  ],
+  "answer": {
+    "correct": "D. Utilize the GCP Marketplace to launch the Jenkins server.",
+    "explanation": "The Google Cloud Marketplace provides pre-configured solutions, reducing setup time for rapid deployment."
+  }
+},
+{
+  "question": "You are working for a finance company and are assigned to configure a relational database solution on Google Cloud Platform to support a small set of operational data in a particular geographical location. Your company requires the database to be highly reliable and supports point-in-time recovery while minimizing operating costs.\n\nWhat should you do?",
+  "choices": [
+    "A. Choose Cloud SQL (MySQL) and verify that the enable binary logging option is selected.",
+    "B. Choose Cloud SQL (MySQL) and select the create failover replicas option.",
+    "C. Choose Cloud Spanner and configure your instance with 2 nodes.",
+    "D. Choose Cloud Spanner and set up your instance as multi-regional."
+  ],
+  "answer": {
+    "correct": "A. Choose Cloud SQL (MySQL) and verify that the enable binary logging option is selected.",
+    "explanation": "Enabling binary logging allows Cloud SQL to support point-in-time recovery, meeting the requirements at a lower cost compared to Cloud Spanner."
+  }
+},
+{
+  "question": "You have deployed a standalone application in a Compute Engine VM hosted in a private VPC. You want the application to be accessed through angat.tutorialsdojo.com URL within its VPC. You also don’t want the IP address to change in case the VM reboots or has recovered from a crash. You want to deploy a solution with minimal cost and setup.\n\nWhat should you do?",
+  "choices": [
+    "A. Deploy a DNS Server from Google Cloud Marketplace. Configure the VM IP address to resolve to angat.tutorialsdojo.com.",
+    "B. Reserve a static internal IP address for the VM. Create a private zone on Cloud DNS with tutorialsdojo.com as DNS. Configure the static internal IP address to resolve to angat.tutorialsdojo.com using the record set.",
+    "C. Reserve a static internal IP address for the VM. Create a public zone on Cloud DNS with tutorialsdojo.com as DNS. Configure the static internal IP address to resolve to angat.tutorialsdojo.com using the record set.",
+    "D. Configure the DNS route using Cloud DNS. Monitor the VM status using Google Cloud’s operations suite. Modify the Cloud DNS record set if there are changes from the VM IP Address."
+  ],
+  "answer": {
+    "correct": "B. Reserve a static internal IP address for the VM. Create a private zone on Cloud DNS with tutorialsdojo.com as DNS. Configure the static internal IP address to resolve to angat.tutorialsdojo.com using the record set.",
+    "explanation": "Using a static internal IP ensures the IP remains consistent, and a private DNS zone on Cloud DNS allows internal resolution within the VPC."
+  }
+},
+{
+  "question": "Your company is planning to launch a web application to App Engine. It is crucial that your application can dynamically scale up and down based on the request rate. Moreover, you want to ensure that you have at least 3 unoccupied VMs at all times. How should you configure your App Engine to support these scaling requirements?",
+  "choices": [
+    "A. Configure Basic Scaling setting with min_instances set to 3.",
+    "B. Configure Basic Scaling setting with max_instances set to 3.",
+    "C. Set Automatic Scaling settings with min_idle_instances set to 3.",
+    "D. Set Manual Scaling settings to 3 instances."
+  ],
+  "answer": {
+    "correct": "C. Set Automatic Scaling settings with min_idle_instances set to 3.",
+    "explanation": "Setting Automatic Scaling with min_idle_instances ensures that there are always 3 unoccupied instances available, allowing dynamic scaling to meet request rates."
+  }
+},
+{
+  "question": "You created a Dockerfile, and you plan to deploy it on Google Kubernetes Engine (GKE). What should you do?",
+  "choices": [
+    "A. Run kubectl app deploy dockerfilename on Cloud Console.",
+    "B. Run gcloud app deploy dockerfilename on Cloud Console.",
+    "C. Build a Docker image using the Dockerfile and upload it to the Google Artifact Registry (AR). Create a Deployment YAML file to point to the image you just uploaded on the Artifact Registry. Utilize the kubectl command to create the deployment using the YAML file.",
+    "D. Build a docker image using the Dockerfile and upload it to Cloud Storage. Then, create a Deployment YAML file to point to the image you uploaded on Cloud Storage. Utilize the kubectl command to create the deployment using the YAML file."
+  ],
+  "answer": {
+    "correct": "C. Build a Docker image using the Dockerfile and upload it to the Google Artifact Registry (AR). Create a Deployment YAML file to point to the image you just uploaded on the Artifact Registry. Utilize the kubectl command to create the deployment using the YAML file.",
+    "explanation": "Using the Artifact Registry to store Docker images is a recommended practice, and the Deployment YAML file allows Kubernetes to locate and deploy the image from a trusted location."
+  }
+},
+{
+  "question": "You are assigned to set up a storage policy on a specific Cloud Storage Regional bucket that stores CCTV videos for your company. The files must be moved to Coldline storage after 3 months (90 days) and then automatically be deleted after a year from their creation date. What policy should you set up?",
+  "choices": [
+    "A. Specify Object Lifecycle Management conditions on the Cloud Storage bucket then configure the SetStorageClass action to 90 days and configure the Delete action to 275 days.",
+    "B. Specify Object Lifecycle Management conditions on the Cloud Storage bucket then configure the SetStorageClass action to 90 days and configure the Delete action to 365 days.",
+    "C. Utilize the gsutil tool on Cloud Shell and execute the gsutil rewrite command then set the Delete action to 275 days.",
+    "D. Utilize the gsutil tool on Cloud Shell and execute the gsutil rewrite command then set the Delete action to 365 days."
+  ],
+  "answer": {
+    "correct": "A. Specify Object Lifecycle Management conditions on the Cloud Storage bucket then configure the SetStorageClass action to 90 days and configure the Delete action to 275 days.",
+    "explanation": "Setting Object Lifecycle Management with SetStorageClass to 90 days moves the files to Coldline after 3 months, and setting the Delete action to 275 days ensures deletion after approximately one year."
+  }
+}
+
+]
