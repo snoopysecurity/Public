@@ -1,0 +1,123 @@
+# Starship configuration - Ubuntu MATE theme, Zellij-friendly
+# Clean, single-line prompt with emojis and color accents
+
+# Don't force a new line at start
+add_newline = false
+
+# Remove extra line breaks
+[line_break]
+disabled = true
+
+# Character module (prompt symbol)
+[character]
+success_symbol = "[  ➟](bold #00A652)"
+error_symbol = "[  ✗](bold #df382c)"
+
+# Hide username
+[username]
+disabled = true
+
+# Hostname module
+[hostname]
+ssh_only = false
+format = "💻️ [$hostname]($style) "
+trim_at = ".companyname.com"
+style = "bold italic #87A752"
+
+# Directory module
+[directory]
+format = "📂️ [$path]($style) "
+truncation_length = 10
+truncate_to_repo = true
+style = "bold italic #87A752"
+
+# Command duration
+[cmd_duration]
+format = "⏲️  [$duration]($style) "
+min_time = 4
+show_milliseconds = false
+style = "bold italic #87A752"
+
+# Git branch
+[git_branch]
+format = " [$branch]($style) "
+style = "bold purple"
+
+# Git status
+[git_status]
+format = "[$all_status]($style) "
+style = "red"
+conflicted = "!"
+ahead = "↑"
+behind = "↓"
+diverged = "↕"
+up_to_date = ""
+untracked = "…"
+stashed = "⚑"
+modified = "✚"
+staged = "●"
+renamed = "»"
+deleted = "✘"
+
+# Node.js version
+[nodejs]
+format = "via [ $version]($style) "
+style = "green bold"
+disabled = false
+
+# Python version
+[python]
+format = "via [🐍 $version]($style) "
+style = "yellow bold"
+disabled = false
+
+# Rust version
+[rust]
+format = "via [🦀 $version]($style) "
+style = "red bold"
+disabled = false
+
+# Battery module (macOS)
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡"
+discharging_symbol = "🔋"
+unknown_symbol = "❓"
+empty_symbol = "🪫"
+disabled = false
+
+[[battery.display]]
+threshold = 15
+style = "bold red"
+
+[[battery.display]]
+threshold = 50
+style = "bold yellow"
+
+[[battery.display]]
+threshold = 100
+style = "bold green"
+
+# Package version
+[package]
+format = "📦 [$version]($style) "
+style = "208 bold"
+
+# Time module (optional)
+[time]
+disabled = true
+time_format = "%R"
+format = "🕒 [$time]($style) "
+style = "bright-white"
+
+# Disable AWS module if unused
+[aws]
+disabled = true
+
+# Disable GCloud module if unused
+[gcloud]
+disabled = true
+
+# Disable Kubernetes module if unused
+[kubernetes]
+disabled = true
