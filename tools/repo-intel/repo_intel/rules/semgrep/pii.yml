@@ -1,0 +1,18 @@
+rules:
+  - id: pii-handling
+    patterns:
+      - pattern-either:
+          - pattern: "email"
+          - pattern: "phone_number"
+          - pattern: "ssn"
+          - pattern: "social_security"
+          - pattern: "passport"
+          - pattern: "drivers_license"
+          - pattern: "dob"
+          - pattern: "date_of_birth"
+    message: "Potential PII Handling"
+    languages: [python, javascript, typescript, go, java, csharp, ruby, php]
+    severity: INFO
+    metadata:
+      category: feature
+      subcategory: pii

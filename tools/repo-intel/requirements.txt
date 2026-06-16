@@ -1,0 +1,7 @@
+GitPython
+requests
+PyGithub
+langdetect
+fastapi
+uvicorn
+semgrep

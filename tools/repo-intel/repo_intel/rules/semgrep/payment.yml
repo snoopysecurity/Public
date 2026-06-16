@@ -1,0 +1,17 @@
+rules:
+  - id: payment-logic
+    patterns:
+      - pattern-either:
+          - pattern: "stripe"
+          - pattern: "paypal"
+          - pattern: "braintree"
+          - pattern: "$X.charge(...)"
+          - pattern: "$X.create_subscription(...)"
+          - pattern: "Invoice"
+          - pattern: "Billing"
+    message: "Payment or Billing Logic"
+    languages: [python, javascript, typescript, go, java, csharp, ruby, php]
+    severity: INFO
+    metadata:
+      category: feature
+      subcategory: payment

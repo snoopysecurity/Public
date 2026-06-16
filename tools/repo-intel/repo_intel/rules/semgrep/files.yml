@@ -1,0 +1,17 @@
+rules:
+  - id: file-handling
+    patterns:
+      - pattern-either:
+          - pattern: "upload_file"
+          - pattern: "s3"
+          - pattern: "blob_storage"
+          - pattern: "read_file"
+          - pattern: "write_file"
+          - pattern: "fs.readFile"
+          - pattern: "open(...)"
+    message: "File Handling or Storage Logic"
+    languages: [python, javascript, typescript, go, java, csharp, ruby, php]
+    severity: INFO
+    metadata:
+      category: feature
+      subcategory: files

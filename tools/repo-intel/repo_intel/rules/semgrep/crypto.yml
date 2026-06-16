@@ -1,0 +1,19 @@
+rules:
+  - id: crypto-detection
+    patterns:
+      - pattern-either:
+          - pattern: $X.encrypt(...)
+          - pattern: $X.decrypt(...)
+          - pattern: $X.hash(...)
+          - pattern: $X.digest(...)
+          - pattern: "bcrypt"
+          - pattern: "hashlib"
+          - pattern: "crypto"
+          - pattern: "aes"
+          - pattern: "rsa"
+    message: "Potential Cryptographic Logic"
+    languages: [python, javascript, typescript, go, java, csharp, ruby, php]
+    severity: INFO
+    metadata:
+      category: feature
+      subcategory: cryptography

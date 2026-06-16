@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+.windsurf/
+
+# Output
+*_findings/
+*.json
+
+.DS_Store
+
+__pycache__/
+*.pyc
+
+findings/
+repo_intel/dashboard/frontend/node_modules/

@@ -1,0 +1,8 @@
+# Global Blacklist
+# Findings containing these terms (in title or description) will be downgraded to 'info' severity.
+# Case insensitive.
+
+# Examples:
+# internal_test_tool
+# legacy_ignore_me
+dependabot

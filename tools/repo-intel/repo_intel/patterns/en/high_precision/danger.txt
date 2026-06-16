@@ -1,0 +1,4 @@
+/eval\(/
+/exec\(/
+/os\.system\(/
+/subprocess\.call\(/

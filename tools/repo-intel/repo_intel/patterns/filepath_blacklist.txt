@@ -1,0 +1,15 @@
+# Context Awareness Blacklist
+# Findings in files matching these patterns will be downgraded to 'info' severity.
+# Lines starting with # are comments.
+# Matches are partial (substring) unless specific regex anchors are used (not supported yet, simpler logic in base.py).
+
+test/
+spec/
+mock
+fixture
+doc/
+docs/
+readme
+.md
+license
+changelog

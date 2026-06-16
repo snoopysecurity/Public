@@ -1,0 +1,18 @@
+rules:
+  - id: messaging-logic
+    patterns:
+      - pattern-either:
+          - pattern: "send_email"
+          - pattern: "send_sms"
+          - pattern: "smtp"
+          - pattern: "twilio"
+          - pattern: "slack"
+          - pattern: "discord"
+          - pattern: "notification"
+          - pattern: "webhook"
+    message: "Messaging or Notification Logic"
+    languages: [python, javascript, typescript, go, java, csharp, ruby, php]
+    severity: INFO
+    metadata:
+      category: feature
+      subcategory: messaging

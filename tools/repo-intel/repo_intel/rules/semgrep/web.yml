@@ -1,0 +1,19 @@
+rules:
+  - id: api-route-detection
+    patterns:
+      - pattern-either:
+          - pattern: "@app.route(...)"
+          - pattern: "router.get(...)"
+          - pattern: "router.post(...)"
+          - pattern: "http.HandleFunc(...)"
+          - pattern: "app.get(...)"
+          - pattern: "app.post(...)"
+          - pattern: |
+              class $X(APIView):
+                ...
+    message: "API Route Definition"
+    languages: [python, javascript, typescript, go]
+    severity: INFO
+    metadata:
+      category: feature
+      subcategory: api

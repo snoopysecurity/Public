@@ -1,0 +1,16 @@
+rules:
+  - id: admin-functionality
+    patterns:
+      - pattern-either:
+          - pattern: "is_admin"
+          - pattern: "is_superuser"
+          - pattern: "admin_required"
+          - pattern: "roles=['admin']"
+          - pattern: "Role.ADMIN"
+          - pattern: "sudo"
+    message: "Admin or Privileged Logic"
+    languages: [python, javascript, typescript, go, java, csharp, ruby, php]
+    severity: INFO
+    metadata:
+      category: feature
+      subcategory: admin

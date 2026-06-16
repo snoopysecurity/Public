@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "repo-intel"
+version = "0.1.0"
+description = "Code intelligence mining tool for security analysis"
+authors = [
+    {name = "snoopysecurity", email = "security@snoopysecurity.org"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+dependencies = [
+    "GitPython",
+    "requests",
+    "PyGithub",
+    "langdetect",
+    "fastapi",
+    "uvicorn",
+    "semgrep",
+]
+
+[project.scripts]
+repo-intel = "repo_intel.cli:main"
+
+[tool.uv]
+preview = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I", "W", "B", "C4", "UP", "N", "YTT", "S", "A", "COM", "C90", "DTZ", "EM", "EXE", "FBT", "ISC", "ICN", "INP", "PIE", "T20", "TCH", "TID", "T10", "INT", "PTH", "Q", "RSE", "RET", "SLF", "SLOT", "PTH", "PGH", "PD", "NPY", "RUF"]
+ignore = []
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\\.pyi?$'
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true

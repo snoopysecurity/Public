@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Intel Audit Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #1e1e1e;
+            --sidebar-bg: #252526;
+            --header-bg: #333333;
+            --border-color: #3e3e42;
+            --text-color: #cccccc;
+            --accent-color: #007acc;
+            --hover-color: #2a2d2e;
+            --selected-color: #37373d;
+            --card-bg: #2d2d2d;
+            --guide-bg: #1e262c;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            height: 40px;
+            background-color: var(--header-bg);
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color);
+            justify-content: space-between;
+        }
+
+        .brand { font-weight: 600; color: #fff; display: flex; align-items: center; gap: 0.5rem; }
+        .stats { font-size: 0.8rem; color: #aaa; }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #bbb;
+            background-color: #2d2d2d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-list {
+            flex: 1;
+            overflow-y: auto;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .file-item {
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
+        }
+
+        .file-item:hover { background-color: var(--hover-color); }
+        .file-item.active { background-color: var(--selected-color); border-left-color: var(--accent-color); color: #fff; }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .badge-crit { background-color: #f14c4c; }
+        .badge-high { background-color: #cca700; color: #000; }
+        .badge-med { background-color: #007acc; }
+
+        /* Editor Area */
+        .editor-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        #monaco-editor {
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+        }
+
+        /* Findings & Guide Panel */
+        .bottom-panel {
+            height: 350px;
+            background-color: var(--sidebar-bg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            padding: 0.5rem 1rem;
+            background-color: #2d2d2d;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Audit Guide Section */
+        .audit-guide {
+            padding: 1rem;
+            background-color: var(--guide-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .guide-title { font-weight: bold; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .guide-text { font-size: 0.95rem; line-height: 1.5; color: #ddd; margin-bottom: 1rem; }
+        
+        .guide-questions {
+            background: rgba(0,0,0,0.2);
+            padding: 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .guide-q-title { color: #888; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 600; }
+        .guide-q-list { margin: 0; padding-left: 1.2rem; font-size: 0.9rem; color: #ccc; }
+        .guide-q-list li { margin-bottom: 0.3rem; }
+
+        .adjacency-box {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+        .adj-group { display: flex; align-items: center; gap: 0.5rem; }
+        .adj-label { color: #888; text-transform: uppercase; font-size: 0.7rem; font-weight: 600; }
+        .adj-link { 
+            color: var(--accent-color); 
+            text-decoration: none; 
+            cursor: pointer; 
+            background: rgba(0, 122, 204, 0.1); 
+            padding: 2px 6px; 
+            border-radius: 3px; 
+        }
+        .adj-link:hover { background: rgba(0, 122, 204, 0.3); }
+
+        /* Findings List */
+        .finding-row {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .finding-row:hover { background-color: var(--hover-color); }
+        .finding-row:last-child { border-bottom: none; }
+        
+        .f-sev { width: 80px; font-weight: bold; text-transform: uppercase; font-size: 0.75rem; text-align: center; }
+        .f-mod { width: 140px; font-size: 0.75rem; color: #aaa; margin-right: 10px; }
+        .f-msg { flex: 1; }
+        .f-loc { width: 80px; color: #888; text-align: right; font-family: monospace; }
+
+        .sev-critical { color: #f14c4c; }
+        .sev-high { color: #cca700; }
+        .sev-medium { color: #007acc; }
+        .sev-low { color: #3794ff; }
+
+        .score-pill {
+            display: inline-block;
+            background: #333;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            color: #ccc;
+            margin-right: 5px;
+            margin-top: 4px;
+        }
+        .score-val { font-weight: bold; color: #fff; }
+
+        .reason-tag {
+            font-size: 0.75rem;
+            color: #999;
+            background: rgba(255,255,255,0.05);
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-right: 4px;
+        }
+
+        /* Dashboard specific */
+        .card { background-color: var(--card-bg); border-radius: 4px; border: 1px solid var(--border-color); }
+        
+        .matrix-table { width: 100%; border-collapse: collapse; text-align: center; }
+        .matrix-table th, .matrix-table td { padding: 10px; border: 1px solid var(--border-color); }
+        .matrix-table th { background: #333; font-size: 0.8rem; color: #aaa; }
+        .matrix-cell { font-weight: bold; font-size: 1.2rem; cursor: default; }
+        
+        /* Matrix Colors */
+        .bg-crit { background-color: rgba(241, 76, 76, 0.15); color: #f14c4c; }
+        .bg-high { background-color: rgba(204, 167, 0, 0.15); color: #cca700; }
+        .bg-med  { background-color: rgba(0, 122, 204, 0.15); color: #007acc; }
+        .bg-low  { background-color: rgba(55, 148, 255, 0.1); color: #888; }
+
+    </style>
+    <!-- Monaco Loader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <span>🛡️</span> Code Intel Miner
+        </div>
+        <div class="stats" id="stats-bar">Loading...</div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <span>HOTSPOTS (Priority)</span>
+                <button onclick="renderSummary(processedFiles)" class="btn" style="background:#444; color:#fff; border:none; padding:2px 8px; font-size:0.7rem; border-radius:3px; cursor:pointer;">Home</button>
+            </div>
+            <ul class="file-list" id="file-list"></ul>
+        </div>
+
+        <div class="editor-container">
+            <div id="monaco-editor"></div>
+            <div id="summary-view" style="display:none; flex:1; padding:2rem; overflow-y:auto;">
+                <!-- Summary Content -->
+            </div>
+            
+            <div class="empty-state" id="empty-state">
+                <h2>Select a file to start auditing</h2>
+                <p>Use the sidebar to navigate prioritized hotspots.</p>
+            </div>
+            
+            <div class="bottom-panel" id="findings-panel" style="display:none;">
+                <div class="panel-header">
+                    <span>AUDIT GUIDE & FINDINGS</span>
+                    <div>
+                        <button onclick="togglePanel()" style="background:none; border:none; color:#ccc; cursor:pointer;">▼</button>
+                    </div>
+                </div>
+                <div class="panel-content" id="panel-scroll">
+                    <!-- Injected via JS -->
+                    <div id="audit-guide-container" class="audit-guide" style="display:none;"></div>
+                    <div id="findings-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Placeholder
+        let CONTEXT = window.CONTEXT_DATA || {};
+        let editor = null;
+        let activeFile = null;
+        let processedFiles = [];
+
+        async function init() {
+            // Fetch data if needed
+            if (!CONTEXT.repo) {
+                try {
+                    const res = await fetch('/api/context');
+                    if (res.ok) CONTEXT = await res.json();
+                } catch (e) { console.log("Standalone mode"); }
+            }
+
+            if (!CONTEXT.repo) {
+                document.getElementById('stats-bar').textContent = "No data found";
+                return;
+            }
+
+            // Stats
+            document.getElementById('stats-bar').textContent = 
+                `${CONTEXT.repo} • ${CONTEXT.summary?.total_findings || 0} Findings`;
+
+            // Process & Render Files
+            processedFiles = processFiles(CONTEXT);
+            renderFileList(processedFiles);
+            renderSummary(processedFiles); // Initial view could be summary
+
+            // Init Monaco
+            require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs' }});
+            require(['vs/editor/editor.main'], function() {});
+        }
+
+        function processFiles(data) {
+            const map = {};
+            
+            // 1. Process Hotspots (Primary source of truth for files)
+            (data.hotspots||[]).forEach(h => {
+                if(h.type==='file') {
+                    map[h.identifier] = { 
+                        path: h.identifier, 
+                        score: h.score, 
+                        findings: [],
+                        review_guide: h.review_guide,
+                        adjacency: h.adjacency,
+                        reason: h.reason
+                    };
+                }
+            });
+
+            // 2. Map Findings to Files
+            (data.findings||[]).forEach(f => {
+                const files = [];
+                if (f.metadata?.files) files.push(...f.metadata.files);
+                if (f.metadata?.file) files.push(f.metadata.file);
+                
+                // Deduplicate
+                const uniqueFiles = [...new Set(files)];
+                
+                uniqueFiles.forEach(p => {
+                    if (!p) return;
+                    if(!map[p]) {
+                        // Create entry if it wasn't a hotspot
+                        map[p] = { 
+                            path: p, 
+                            score: 0, 
+                            findings: [],
+                            review_guide: null,
+                            adjacency: null
+                        };
+                    }
+                    map[p].findings.push(f);
+                    
+                    // Update max score for non-hotspots
+                    const pScore = f.priority_score || 0;
+                    if (pScore > map[p].score) {
+                         map[p].score = pScore;
+                    }
+                });
+            });
+            return Object.values(map).sort((a,b) => b.score - a.score);
+        }
+
+        function renderFileList(files) {
+            const list = document.getElementById('file-list');
+            list.innerHTML = ''; // Clear list
+            files.forEach(file => {
+                const li = document.createElement('li');
+                li.className = 'file-item';
+                li.onclick = () => loadFile(file.path, li);
+                
+                const crit = file.findings.filter(f=>f.severity==='critical').length;
+                const high = file.findings.filter(f=>f.severity==='high').length;
+                
+                let badge = '';
+                if(crit) badge = `<span class="badge badge-crit">${crit}</span>`;
+                else if(high) badge = `<span class="badge badge-high">${high}</span>`;
+                else badge = `<span class="badge badge-med">${file.findings.length}</span>`;
+
+                li.innerHTML = `<span style="text-overflow:ellipsis; overflow:hidden;">${file.path}</span>${badge}`;
+                list.appendChild(li);
+            });
+        }
+
+        async function loadFile(path, liElement=null) {
+            // Find file object
+            const file = processedFiles.find(f => f.path === path) || { path: path, findings: [] };
+            activeFile = file;
+
+            // Update UI Sidebar
+            if (liElement) {
+                document.querySelectorAll('.file-item').forEach(e=>e.classList.remove('active'));
+                liElement.classList.add('active');
+            } else {
+                // If loaded via link, try to find li
+                // (Optional: Implement auto-scroll to li)
+            }
+
+            // Show editor UI
+            document.getElementById('summary-view').style.display = 'none';
+            document.getElementById('empty-state').style.display = 'none';
+            document.getElementById('monaco-editor').style.display = 'block';
+            document.getElementById('findings-panel').style.display = 'flex';
+
+            // Fetch Content
+            let content = "// Loading source code...\n// If this hangs, ensure local server is running.";
+            try {
+                const res = await fetch(`/api/source/${file.path}`);
+                if (res.ok) content = await res.text();
+                else content = "// Source code not available (Standalone mode or file missing)\n// View on GitHub: https://github.com/" + CONTEXT.repo + "/blob/master/" + file.path;
+            } catch(e) {
+                content = "// Error fetching source code.\n// Run 'repo-intel serve ...' to view code.";
+            }
+
+            if (!editor) {
+                editor = monaco.editor.create(document.getElementById('monaco-editor'), {
+                    value: content,
+                    language: getLanguage(file.path),
+                    theme: 'vs-dark',
+                    readOnly: true,
+                    automaticLayout: true,
+                    minimap: { enabled: true }
+                });
+            } else {
+                const model = monaco.editor.createModel(content, getLanguage(file.path));
+                editor.setModel(model);
+            }
+
+            // Add Markers (Squiggles)
+            updateMarkers(file.findings);
+            
+            // Render Panels
+            renderAuditGuide(file);
+            renderFindingsPanel(file.findings);
+        }
+
+        function getLanguage(path) {
+            if (path.endsWith('.js')) return 'javascript';
+            if (path.endsWith('.py')) return 'python';
+            if (path.endsWith('.html')) return 'html';
+            if (path.endsWith('.css')) return 'css';
+            if (path.endsWith('.json')) return 'json';
+            if (path.endsWith('.java')) return 'java';
+            if (path.endsWith('.md')) return 'markdown';
+            return 'plaintext';
+        }
+
+        function updateMarkers(findings) {
+            const markers = findings.map(f => {
+                const line = f.metadata?.line || 1;
+                return {
+                    startLineNumber: line,
+                    startColumn: 1,
+                    endLineNumber: line,
+                    endColumn: 1000,
+                    message: `[${f.source_module}] ${f.title}`,
+                    severity: f.severity === 'critical' || f.severity === 'high' ? monaco.MarkerSeverity.Error : monaco.MarkerSeverity.Warning
+                };
+            });
+            monaco.editor.setModelMarkers(editor.getModel(), 'owner', markers);
+        }
+
+        function renderAuditGuide(file) {
+            const container = document.getElementById('audit-guide-container');
+            if (!file.review_guide && !file.adjacency) {
+                container.style.display = 'none';
+                return;
+            }
+            container.style.display = 'block';
+
+            let html = '';
+            
+            // 1. Summary
+            if (file.review_guide?.summary) {
+                html += `<div class="guide-title"><span>🕵️</span> Why am I looking here?</div>`;
+                html += `<div class="guide-text">${file.review_guide.summary}</div>`;
+            }
+
+            // 2. Questions
+            if (file.review_guide?.questions && file.review_guide.questions.length > 0) {
+                html += `<div class="guide-questions">
+                    <div class="guide-q-title">Suggested Review Questions</div>
+                    <ul class="guide-q-list">
+                        ${file.review_guide.questions.map(q => `<li>${q}</li>`).join('')}
+                    </ul>
+                </div>`;
+            }
+
+            // 3. Adjacency (Review Radius)
+            if (file.adjacency) {
+                const siblings = file.adjacency.siblings || [];
+                const importers = file.adjacency.importers || [];
+                
+                if (siblings.length > 0 || importers.length > 0) {
+                    html += `<div class="adjacency-box">
+                        ${importers.length ? `
+                        <div class="adj-group">
+                            <span class="adj-label">Referenced By:</span>
+                            ${importers.map(p => `<a class="adj-link" onclick="loadFile('${p}')">${p}</a>`).join('')}
+                        </div>` : ''}
+                        
+                        ${siblings.length ? `
+                        <div class="adj-group">
+                            <span class="adj-label">Siblings:</span>
+                            ${siblings.map(p => `<a class="adj-link" onclick="loadFile('${p}')">${p}</a>`).join('')}
+                        </div>` : ''}
+                    </div>`;
+                }
+            }
+            
+            container.innerHTML = html;
+        }
+
+        function renderFindingsPanel(findings) {
+            const list = document.getElementById('findings-list');
+            list.innerHTML = '';
+            
+            // Sort findings by priority score descending
+            findings.sort((a,b) => (b.priority_score || 0) - (a.priority_score || 0));
+
+            findings.forEach(f => {
+                const div = document.createElement('div');
+                div.className = 'finding-row';
+                div.onclick = () => {
+                    const line = f.metadata?.line || 1;
+                    editor.revealLineInCenter(line);
+                    editor.setPosition({lineNumber: line, column: 1});
+                };
+                
+                // Score breakdown
+                const c_score = f.confidence_score !== undefined ? f.confidence_score : 0;
+                const i_score = f.impact_score !== undefined ? f.impact_score : 0;
+                
+                // Reasons parsing
+                // Assuming c_reason is "A, B, C"
+                const reasons = [];
+                if(f.confidence_reason) reasons.push(...f.confidence_reason.split(', '));
+                if(f.impact_reason) reasons.push(...f.impact_reason.split(', '));
+                
+                // De-dupe and clean
+                const uniqueReasons = [...new Set(reasons)].filter(r => r && r !== 'Baseline');
+
+                const scores = `
+                    <div class="score-pill" title="Confidence: ${c_score}">C <span class="score-val">${c_score.toFixed(1)}</span></div>
+                    <div class="score-pill" title="Impact: ${i_score}">I <span class="score-val">${i_score.toFixed(1)}</span></div>
+                `;
+
+                div.innerHTML = `
+                    <div class="f-sev sev-${f.severity}">
+                        ${f.severity}
+                        <div style="font-size:0.65rem; opacity:0.8; margin-top:4px;">Score: ${f.priority_score || 0}</div>
+                    </div>
+                    <div class="f-mod">
+                        <div style="font-weight:bold; overflow:hidden; text-overflow:ellipsis;">${f.source_module}</div>
+                        ${scores}
+                    </div>
+                    <div class="f-msg">
+                        <div style="font-weight:bold; margin-bottom:4px; display:flex; align-items:center;">
+                            ${f.title}
+                            ${f.priority_reason && f.priority_reason.includes('Boost') ? '<span style="margin-left:5px; font-size:0.8rem;">🔥</span>' : ''}
+                        </div>
+                        <div style="margin-bottom:6px;">${f.description}</div>
+                        <div>
+                            ${uniqueReasons.map(r => `<span class="reason-tag">${r}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="f-loc">Ln ${f.metadata?.line || '?'}</div>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function renderSummary(fileList) {
+            // Unset active file in sidebar
+            document.querySelectorAll('.file-item').forEach(e=>e.classList.remove('active'));
+            activeFile = null;
+
+            const view = document.getElementById('summary-view');
+            view.style.display = 'block';
+            document.getElementById('empty-state').style.display = 'none';
+            document.getElementById('monaco-editor').style.display = 'none';
+            document.getElementById('findings-panel').style.display = 'none';
+            
+            const totalFiles = fileList.length;
+            const totalFindings = CONTEXT.summary.total_findings || 0;
+            const bySev = CONTEXT.summary.by_severity || {};
+            
+            // Calculate Attention Matrix with floats
+            const matrix = {
+                high_high: 0, high_med: 0, high_low: 0,
+                med_high: 0, med_med: 0, med_low: 0,
+                low_high: 0, low_med: 0, low_low: 0
+            };
+            
+            (CONTEXT.findings || []).forEach(f => {
+                const c = f.confidence_score || 0; // 0.0 - 1.0
+                const i = f.impact_score || 0;     // 0.0 - 1.0
+                
+                // Thresholds: High >= 0.7, Med >= 0.4
+                let c_label = 'low';
+                if (c >= 0.7) c_label = 'high';
+                else if (c >= 0.4) c_label = 'med';
+                
+                let i_label = 'low';
+                if (i >= 0.7) i_label = 'high';
+                else if (i >= 0.4) i_label = 'med';
+                
+                matrix[`${c_label}_${i_label}`]++;
+            });
+            
+            view.innerHTML = `
+                <h1 style="margin-bottom:2rem;">Audit Overview</h1>
+                <div style="display:flex; gap:2rem; margin-bottom:2rem;">
+                    <div class="card" style="flex:1; padding:1.5rem; text-align:center;">
+                        <div style="font-size:2.5rem; font-weight:bold; color:var(--text-color);">${totalFindings}</div>
+                        <div style="color:#888; text-transform:uppercase; font-size:0.8rem; letter-spacing:1px;">Total Findings</div>
+                    </div>
+                    <div class="card" style="flex:1; padding:1.5rem; text-align:center;">
+                        <div style="font-size:2.5rem; font-weight:bold; color:var(--text-color);">${totalFiles}</div>
+                        <div style="color:#888; text-transform:uppercase; font-size:0.8rem; letter-spacing:1px;">Hotspot Files</div>
+                    </div>
+                    <div class="card" style="flex:1; padding:1.5rem; text-align:center;">
+                        <div style="font-size:2.5rem; font-weight:bold; color:${(bySev.critical||0) > 0 ? '#f14c4c' : 'var(--text-color)'}">${bySev.critical||0}</div>
+                        <div style="color:#888; text-transform:uppercase; font-size:0.8rem; letter-spacing:1px;">Critical Issues</div>
+                    </div>
+                </div>
+                
+                <div style="display:grid; grid-template-columns: 2fr 1fr; gap:2rem;">
+                    <div class="card" style="padding:1.5rem;">
+                        <h3 style="margin-top:0;">Attention Allocation Matrix</h3>
+                        <p style="font-size:0.8rem; color:#888; margin-bottom:1rem;">
+                            Intersection of <strong>Confidence</strong> (Vertical) and <strong>Impact</strong> (Horizontal).
+                        </p>
+                        
+                        <table class="matrix-table">
+                            <thead>
+                                <tr>
+                                    <th style="border:none; background:transparent;"></th>
+                                    <th>High Impact (>0.7)</th>
+                                    <th>Medium Impact</th>
+                                    <th>Low Impact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>High Conf (>0.7)</th>
+                                    <td class="matrix-cell bg-crit">${matrix.high_high}</td>
+                                    <td class="matrix-cell bg-high">${matrix.high_med}</td>
+                                    <td class="matrix-cell bg-low">${matrix.high_low}</td>
+                                </tr>
+                                <tr>
+                                    <th>Med Conf</th>
+                                    <td class="matrix-cell bg-high">${matrix.med_high}</td>
+                                    <td class="matrix-cell bg-med">${matrix.med_med}</td>
+                                    <td class="matrix-cell bg-low">${matrix.med_low}</td>
+                                </tr>
+                                <tr>
+                                    <th>Low Conf</th>
+                                    <td class="matrix-cell bg-med">${matrix.low_high}</td>
+                                    <td class="matrix-cell bg-low">${matrix.low_med}</td>
+                                    <td class="matrix-cell bg-low" style="opacity:0.3;">${matrix.low_low}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="card" style="padding:1.5rem;">
+                         <h3 style="margin-top:0;">Audit Strategy</h3>
+                         <ul style="padding-left:1.2rem; color:#ccc; line-height:1.6;">
+                            <li>Start with <strong>High Confidence × High Impact</strong> (Top Left).</li>
+                            <li>Review <strong>High Impact</strong> items even if Confidence is lower.</li>
+                            <li>Use the <strong>Review Guide</strong> for context on each file.</li>
+                         </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        function togglePanel() {
+            const p = document.getElementById('findings-panel');
+            const h = p.offsetHeight;
+            // Simple toggle height or display
+            if (h > 40) {
+                 p.style.height = '35px'; // Collapsed
+                 document.getElementById('panel-scroll').style.display = 'none';
+            } else {
+                 p.style.height = '350px'; // Expanded
+                 document.getElementById('panel-scroll').style.display = 'flex';
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

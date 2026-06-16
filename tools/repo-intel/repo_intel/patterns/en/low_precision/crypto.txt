@@ -1,0 +1,21 @@
+SHA-1
+SHA-256
+MD5
+HMAC
+cipher
+cryptography
+encryption
+decryption
+private key
+public key
+certificate
+TLS
+SSL
+nonce
+IV
+initialization vector
+padding oracle
+timing attack
+side-channel
+weak key
+broken crypto

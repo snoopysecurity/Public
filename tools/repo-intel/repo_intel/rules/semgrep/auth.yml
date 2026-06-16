@@ -1,0 +1,20 @@
+rules:
+  - id: auth-detection
+    patterns:
+      - pattern-either:
+          - pattern: $X.login(...)
+          - pattern: $X.authenticate(...)
+          - pattern: $X.verify_password(...)
+          - pattern: $X.sign_token(...)
+          - pattern: |
+              def login(...):
+                  ...
+          - pattern: |
+              class Login(...):
+                  ...
+    message: "Potential Authentication Logic"
+    languages: [python, javascript, typescript, go, java, csharp, ruby, php]
+    severity: INFO
+    metadata:
+      category: feature
+      subcategory: authentication
