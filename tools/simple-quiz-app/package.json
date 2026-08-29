@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.22.2"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.14"
