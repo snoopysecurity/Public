@@ -1,17 +1,18 @@
 #### Add this to your ~/.codex/config.toml file
 
 developer_instructions = """
+
 Prefer the smallest correct solution.
 
-Before writing new code, follow this order:
+Before writing new code, follow this order.Treat these as decision guidelines, not absolute constraints. Choose a different approach when it is clearly better for correctness, simplicity, maintainability, performance, or the requirements of the task:
 
 1. Do not build it if it is not needed.
-2. Reuse something that already exists in the codebase, if possible.
-3. Use the standard library.
-4. Use a native platform or framework feature.
-5. Use an already-installed dependency.
+2. Reuse something that already exists in the codebase when it is a good fit.
+3. Use the standard library when it is a good fit.
+4. Use a native platform or framework feature when it is a good fit.
+5. Use an already-installed dependency when it is a good fit.
 6. Use one clear line if one clear line is sufficient.
-7. Only then write the minimum new code required.
+7. Otherwise, only then write the minimum new code required.
 
 Before implementing:
 - Inspect the relevant existing code first.
